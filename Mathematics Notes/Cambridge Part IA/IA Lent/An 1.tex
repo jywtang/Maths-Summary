@@ -1,0 +1,217 @@
+\input{../../header}
+
+\begin{document}
+
+\section*{Analysis 1 \hfill IA Lent}
+Want a rigorous foundation from limits, convergence, continuity, differentiation and integration (and more)
+
+\section{Real Numbers}
+\begin{itemize}
+      \item Real numbers $\R$: totally ordered field with the \underline{least upper bound property} (LUBP): \\
+            A set $S$ is non empty and bounded above $\implies S$ has least upper bound (supremum) in $\R$
+      \item Definition of upper bound and least upper bound
+      \item Axiom of Archimedes: two equivalent versions
+            $ (\forall M)(\exists N \in \N) N > M$ \\
+            $(\forall \varepsilon > 0)(\exists N \in \N )\frac{1}{N} < \varepsilon$
+      \item $\mathbb{Q}$  is dense in $\mathbb{R}$: given reals $a < b$, $\exists$ rational $ \frac{p}{q} \in (a,b)$
+\end{itemize}
+
+\section{Sequence and Series}
+\subsection*{Real Sequences}
+\begin{itemize}
+      \item A sequence $(a_n)$ in $X$: a function $a: \N \to X$ (assigns an element in $X$ to each natural number)
+      \item Convergence: $(z_n) \to z \iff (\forall \varepsilon > 0)(\exists N)(\forall n>N) \: \abs{z_n - z} < \varepsilon$; \\
+            given any $\varepsilon > 0$, can find $N$ beyond which, $z_n$ stay close to $z$
+      \item Uniqueness of limits: $(z_n) \to a$ and $(z_n) \to b \implies a = b$
+      \item Laws of limits: add, subtract, multiply, reciprocal
+      \item If a \underline{\textbf{real}} sequence $(x_n)$ converges and $ \forall n: x_n \geq a$, then $x_n \to x \geq a$
+      \item Squeeze Theorem (for \underline{\textbf{real}} sequences): If sequences $a_n \to c , \: b_n \to c$ and $\forall n: a_n \leq c_n \leq b_n $, then $c_n \to c$
+      \item Bounded sequences, monotone sequences, subsequences
+      \item Monotone Sequence Theorem (bounded above $+$ monotone increasing $\implies$ convergence): supremum is limit
+      \item Sequence converges $\implies$ any subsequence converges
+      \item Monotone increasing sequence has a convergent subsequence $\implies$ whole sequence converges
+      \item Bolzano-Weierstrass Theorem (lion hunting): every bounded sequence has a convergent subsequence
+      \item Cauchy Sequences: Cauchy $\iff$ convergent in $\R$ (General principle of convergence)
+      \item Subsequence of Cauchy $\to a \implies $ Cauchy $\to a$
+      \item Cauchy completeness
+      \item (Nested interval property: in Gowers' notes)
+      \item ($\limsup$ and $\liminf$, converge $\iff \limsup = \liminf$)
+\end{itemize}
+
+\subsection*{Complex Sequences}
+\begin{itemize}
+      \item Definition of sequence, convergence are the same (absolute value to modulus)
+      \item Bounded sequence: same definition
+      \item Ordering does not exist: no Squeeze Theorem, Monotone Sequence Theorem
+      \item Have Bolzano-Weierstrass Theorem for complex numbers
+      \item Have Cauchy sequences $\iff$ convergent in $\mathbb{C}$
+\end{itemize}
+
+\subsection*{Series}
+\begin{itemize}
+      \item Series $=$ infinite sums, convergence in terms of sequence of partial sums
+      \item Series converge $\implies$ $n$-th term $\to$ zero
+      \item Convergence tests:
+            \begin{itemize}
+                  \item Comparison test (real only): \\
+                        sequence bounded above and monotone increasing
+                  \item Absolute convergence (real and complex): \\
+                        Real: separate into series with $+$ve/$-$ve terms, both converge by comparison, then difference also converges; \\(converges absolutely $\iff$ converges to the same limit for any rearrangement)\\
+                        Complex: real and imaginary parts converge $\implies$ complex series converge
+                  \item Strong comparison (complex): \\
+                        use real comparison $+$ absolute
+                  \item Alternating series test (real): \\
+                        odd partial sums are bounded above and monotone decreasing, thus converge and even partial sums follow
+                  \item Ratio test (complex): \\
+                        sum of absolute value bounded above by a converging geometric series; bounded below by a GS diverging to $\infty$
+                  \item Cauchy condensation test (real): \\
+                        $ \sum_{n=1} ^{\infty} a_n $ converges $\iff \sum_{k=1} ^{\infty} 2^k a_{2^k}$ converges
+                  \item (Abel's Test, Integral test, $n$-th root test)
+            \end{itemize}
+\end{itemize}
+
+\section{Limits and continuity}
+\subsection*{Limits (of functions)}
+\begin{itemize}
+      \item Limit of function in $\mathbb{C} :\displaystyle \lim_{z \to a} f(z) = c$
+            \newline $\iff$ can make $f(z)$ as close to $c$ as possible by making $z$ sufficiently close to $a$
+            \newline $\iff$ can approach c by $f(z_n)$ with any sequence $z_n \to a$
+            \newline i.e. $(\forall \varepsilon >0)(\exists \delta>0) \colon 0<|z-a|<\delta \implies 0 < |f(z) -c| < \varepsilon $
+            \newline i.e. $\forall \, (z_n): z_n \in \mathbb{C} \backslash \{a\} \wedge z_n \to a \implies f(z_n) \to c$
+      \item Laws of limits follow from that of sequences
+      \item Limit point: can get as close to the point as needed (e.g. by sequences) in subsets $ A\subset \mathbb{C} $
+
+\end{itemize}
+
+\subsection*{Continuity}
+\begin{itemize}
+      \item Continuous as $z=a$:
+            \newline $f(x) \to f(y)$ as $x \to y$
+            \newline $\iff$ either not limit point or $\lim_{z \to a} f(z) = f(a)$
+            \newline $\iff$ any sequence $z_n \to a \implies f(z_n) \to f(a)$
+      \item Continuous at all points in a set $=$ continuous
+      \item (Continuous induction)
+      \item Intermediate value theorem: \\
+            Given $f: [a,b] \to \R$ continuous,  $f(a)<0<f(b)$ , then $\exists c \in  [a,b]$  with  $f(c) = 0 $
+            (Open or closed interval in result does not matter)
+
+      \item Maximum Value Theorem: \\
+            Given $ f: [a,b] \to \R $ continuous, then $ f $  is bounded and $ \exists c \in [a,b] $ with $f(c) > f(x) \forall x \in [a,b] $
+            (i.e. $f$ attains its inf and sup in the interval)
+            (Need closed interval, as $f$ may attain extrema at the bounds)
+      \item Continuous bijection (must be either strictly increasing or decreasing) have continuous inverse
+      \item (Cover of a set)
+\end{itemize}
+
+\section{(Real) Differentiation}
+\begin{itemize}
+      \item A function $f: [a,b] \to \R: f $ is differentiable at $x = a$ :\\
+            $\lim_{x\to a} \frac{f(x)-f(a)}{x-a} = c = f'(a)$ for some $c \in \R$
+      \item Alternative characterisation: $f$ diffable at $x$ with derivative $f'(x)$ if:
+            $ f(x+h) = f(x) + hf'(x) + h\alpha(h)$, where $\alpha(h) \to 0$ as $h \to 0$
+      \item Differentiable $\implies$ continuous
+      \item Sum rule, product rule, chain rule, quotient rule (prove that the remaining error term goes to $0$)
+      \item Global/local maxima/minima, interior point of an interval
+      \item Differentiable at a local maximum or minimum interior point $c \implies f'(c) = 0 $ (Reverse implication not true)
+      \item Rolle's Theorem:  \\
+            Given $ f: [a,b] \to \R $ continuous on $[a,b]$ , and differentiable on $ (a,b) $, if $f(a) = f(b) = 0$ , then  $\exists c \in (a,b)$  with $ f'(c) = 0$
+
+      \item Mean value theorem: \\
+            Given $ f: [a,b] \to \R $ continuous on $[a,b]$ , and differentiable on $ (a,b) $, then $\exists c \in (a,b)$ with $f'(c) = \frac{f(b)-f(a)}{b-a}$ \\
+
+            Use MVT when we know everything about $f'$ but want to deduce sth about $f$
+
+      \item Derivative of constant/increasing/strictly increasing function
+      \item Inverse function theorem: \\
+            Given $f : I \to \R$ ($I$ an interval) and $f'(x) >0 \forall x \in I$, then $f^{-1} : f(I) \to I$ is continuous, differentiable, with derivative \[ (f^{-1})' (x) = \frac{1}{f'(f^{-1}(y))}\]
+      \item (L'H\^opital's Rule(s))
+
+\end{itemize}
+
+\section{Power series}
+Want best polynomial approximation to functions, one way is match first $k$ derivatives using a (unique) $k$-th degree polynomial:
+\begin{itemize}
+      \item The $k$-th Taylor polynomial of $f$ centered at $a$:
+            \[p_k(x) = \sum_{i=0}^{k}\frac{f^{(i)}(a)}{i!} (x-a)^i\]
+      \item Taylor's Theorem (Lagrange Remainder): \\
+            For $k$-times diffable function $f$: \[f(a+h) = \underbrace{\sum_{i=0}^{k-1} \frac{f^{(i)}(a)}{i!}h^i}_{p_{k-1}(a)} + \underbrace{\frac{f^{(k)}(a)}{k!}h^k}_{\text{remainder/error}}, \text{ for some } c \in (a,x)\]
+      \item Differentiability classes: $C^n = n$-times differentiable with continuous $n$-th derivative
+      \item Taylor Series: \[\sum_{i=0}^{\infty}\frac{f^{(i)}(a)}{i!} (x-a)^i\]
+\end{itemize}
+
+\subsection*{Complex Differentiation}
+\begin{itemize}
+      \item Complex differentiability: same definition, more restrictive (have nice properties, see future courses)
+      \item (Partial differentiation: relation to complex differentiation by writing real part and imaginary parts as bivariate functinons, Cauchy Riemann equations, complex differentiable functions satisfy Laplace's equation)
+      \item Complex differentiable with $F'(z) = 0 \text{ for } z \in B_r(c) = \{z \in \C :|z-c| < r\} \\ \implies F$ is constant in $B_r(c)$
+      \item Radius of convergence: \[R= \sup \left\{ \abs{z}:\sum a_n z^n \text{ converges} \right\},\]
+            $|z|<R \implies $ converges (strong comparison)\\
+            $|z|>R \implies $ diverges (by definition)
+      \item Find radius of convergence by ratio test or $n$-th root test
+\end{itemize}
+Want to differentiate power series term by term:
+\begin{itemize}
+      \item If $f(z) = \sum a_n z^n$, $g(z) = \sum n a_n z^{n-1}$, then $f$ and $g$ have the same radius of convergence
+      \item Inside circle of convergence, \[f(z+h)-f(z)-hg(z) = \sum a_n((z+h)^n-z^n-nhz^{n-1})\] the whole thing is bounded for sufficiently small $h$, thus f is complex differentiable (in fact, infinitely differentiable)
+      \item Derivatives of partial sums also approach the derivative of the Taylor Series
+\end{itemize}
+We then get the useful functions: exp, log, trig using power series, and define $\pi$ using periodicity of trig
+
+\section{Integration}
+\begin{itemize}
+      \item Dissection: a finite subset \[D = \{a_0,a_1,...,a_n|a=a_0<a_1<\dots<a_n =b\} \subset [a,b]\]
+      \item Mesh = $\max\{a_i-a_{i-1}\}$
+      \item Upper sum, Lower sum:
+            \begin{align*}
+                  U(f,D) & = \sum_{i=1}^n (a_i-a_{i-1}) \sup\{f(x)|a_{i-1} \leq x \leq a_i\} \\
+                  L(f,D) & = \sum_{i=1}^n (a_i-a_{i-1}) \inf\{f(x)|a_{i-1} \leq x \leq a_i\}
+            \end{align*}
+            ($\therefore$ integrable $\implies$ sup and inf exists $\implies$ boundedness)
+
+      \item For any dissection $D \subset D'$, (using a finer dissection)
+            \[U(f,D) \geq U(f,D')\]
+            \[L(f,D) \leq L(f,D')\]
+      \item Any $D_1,D_2$: (compare with the common refinement $D_i \cup D_2$)
+            \[ U(f,D_1) \geq L(f,D_2)\]
+
+      \item So upper sums are bounded below, lower sums bounded above, i.e.
+            \[U(f) = \inf_D U(f,D) \text{ and } L(f) = \sup_D L(f,D) \text{ exist.}\]
+      \item $U(f) = L(f) \implies$ Riemann integrable: $\int_a ^b f(x) \dd x = U(f) = L(f)$ (Boundedness is necessary)
+
+      \item Riemann's Integrability Criterion: \[\text{Riemann integrable} \iff \forall \varepsilon >0 \exists \text{ dissection }D  \text{ s.t. } U(f,D) - L(f,D) < \varepsilon\]
+      \item Any increasing $f$ on $[a,b]$ is integrable
+\end{itemize}
+\subsection*{Properties of the integral}
+\begin{itemize}
+      \item Linearity: if $f,g:[a,b] \to \R$ integrable, then \[\int_a^b (\lambda f(x) + \mu g(x)) \dd x = \lambda \int_a^b f(x) \dd x  + \mu \int_a^b g(x) \dd x \]
+      \item If $f(x) \leq g(x) \forall x \in [a,b]$, then \[\int_a^b f(x) \dd x \leq \int_a^b g(x) \dd x \]
+      \item $f$ integrable  $\implies |f|$ integrable
+      \item Additivity: if $f:[a,b] \to \R$ is integrable, then the restriction of $f$ to $[a,c]$ and $[c,b]$ are integrable for any $c \in [a,b]$ and \[\int_a^b f(x) \dd x + \int_a^c f(x) \dd x = \int_c^b f(x) \dd x\]
+      \item Continuous $\implies$ Riemann integrable (on $[a,b]$)
+      \item Integrable on $[a,b] \iff$ integrable on $[a,c], [c,b]$ for $c \in (a,b)$
+      \item \[\abs{\int_a^b f(x) \dd x} \leq \int_a^b |f(x)| \dd x\]
+      \item Product of integrable is integrable
+      \item (Uniform continuity)
+      \item (Bounded on $[a,b]$ and continuous on $(a,b) \implies$ integrable)
+      \item (Can restrict to only using uniformly spaced dissections: will get same results)
+\end{itemize}
+
+\subsection*{Fundamental Theorem of Calculus}
+\begin{itemize}
+      \item (V1) Suppose $f: [a,b] \to \R$ continuous, and define $F = \int_a^x f(x) \dd x$, then F is differentiable and $F'(x) = f(x)$ \\ i.e. has anti-derivative
+      \item (V2) Notes: $F$ is $C^1 \implies \int_a^b F'(t) \dd t = F(b) - F(a)$
+      \item (FTC also true for $F$ differentiable with $F'$ integrable)
+      \item (Differentiable $\centernot\implies$ derivative integrable)
+\end{itemize}
+
+\subsection*{Stuff that follow from FTC}
+\begin{itemize}
+      \item Integration by substitution: chain rule
+      \item Integration by parts: product rule
+      \item Taylor's theorem with integral remainder: \\ Given $f: [a,x] \to \R$ is $C^k$, then \[f(x) = \underbrace{\sum_{i=0}^{k-1}\frac{f^{(i)}(a)}{i!} (x-a)^i}_{p_{k-1}(x)} + \underbrace{\int_a^x \frac{(x-a)^{k-1}}{(k-1)!} f^{(k)}(t) \dd t }_{\text{remainder}}\]
+      \item Integral Test: \\
+            Given $f:[1,\infty] \to \R$ decreasing and non negative,
+            $\sum_{n=1}^{\infty} f(n)$ converges $\iff \int_1^{\infty} f(x) \dd x$ converges
+      \item Improper integrals
+\end{itemize}
+\end{document}

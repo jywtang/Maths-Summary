@@ -1,0 +1,306 @@
+\input{../../header}
+
+\begin{document}
+\section*{Probability \hfill IA Lent}
+\section{Basic Probability}
+\begin{itemize}
+      \item Probability space: Axioms
+            \begin{itemize}
+                  \item Sample space ($\Omega$) consists of outcomes $\omega$
+                  \item $\sigma$-algebra ($\mathcal{F}$) consists of events: \\
+                        $\Omega \in \mathcal{F}$ \\
+                        Closed under complement and countable union
+                  \item Probability measure ($\mathbb{P}: \mathcal{F} \to [0,1]$): $\mathbb{P}(\Omega) = 1$ \\
+                        Countable additivity: disjoint sequence $(A_n)$,
+                        \[P(\bigcup_{n=1}^{\infty} A_n) = \sum_{n=1}^{\infty} P(A_n)\]
+            \end{itemize}
+
+      \item Equally likely outcomes in finite sample space: probability given by counting: \[P(A) = \frac{|A|}{|\Omega|} \]
+
+      \item Combinatorial analysis:
+            \begin{itemize}
+                  \item Addition and multiplication rule
+                  \item Permutation and combination
+                  \item Multinomial coefficient
+            \end{itemize}
+
+      \item Stirling's formula: \[ n! \sim \sqrt{2\pi}n^{n+\frac{1}{2}}e^{-n} \]
+
+      \item Countable subadditivity: \[P(\bigcup_{n=1}^{\infty} A_n) \leq \sum_{n=1}^{\infty} P(A_n)\]
+
+      \item Continuity of probability measures: for non-decreasing sequence of events $A_1 \subseteq A_2 \subseteq A_3 \dots $:
+            \[ P \left( \bigcup_{n=1}^{\infty}A_n \right) = \lim_{n \to \infty} P(A_n)\]
+
+      \item Inclusion-exclusion principle: useful for problems with symmetry, i.e. probability of an intersection of any $n$ events is the same:
+
+            \begin{align*}
+                  P \left(\bigcup_{j=1}^{n} A_j \right)
+                   & = \sum_{j=1}^{n} (-1)^{j+1} \sum_{1 \leq i_1 \leq \dots i_j \leq n} P(A_{i_1} \cap \dots \cap A_{i_j}) \\
+                   & = \sum_{j=1}^{n} (-1)^{j+1} {n \choose j} P(A_1 \cap \dots \cap A_j)
+            \end{align*}
+
+      \item Bonferroni Inequalities
+
+\end{itemize}
+
+
+\section{Independence and Conditional Probability}
+\begin{itemize}
+      \item Independence:
+            \[P(A|B) = P(A) \text{ or } \]
+            The events $A_1, A_2, \dots A_n$ are independent iff for any $k\geq 2$ and $ 1 \leq i_1 < i_2 < i_3 < \dots i_k \leq n $
+            \[ P(A_{i_1} \cap A_{i_2} \cap A_{i_3} \cap \dots \cap A_{i_k}) =  P(A_{i_1}) P(A_{i_2}) P(A_{i_3}) \dots P(A_{i_k}) \]
+
+      \item Conditional Probability:
+            \[P(A|B) = \frac{P(A\cap B)}{P(B)}\]
+      \item Law of Total Probability: Given a partition $(B_n)_{n\geq 1}$ of $\Omega$, \[P(A) = \sum_{n=1}^{\infty} P(A|B_n) P(B_n)\]
+      \item Bayes' Theorem:
+            \[P(A|B) = \frac{P(B|A)P(A)}{P(B)}\]
+\end{itemize}
+
+\section{Discrete Probability Distributions}
+
+\begin{itemize}
+      \item Bernoulli: $ \text{Bern}(p) = \text{Bin}(1,p)$ \[p_1 = p, p_0 = 1-p\]
+      \item Binomial: $\text{Bin}(n,p)$ \[p_k = \binom{n}{k} p^k (1-p)^{n-k}, \text{ where } k \geq 0
+            \]
+      \item Poisson: $\text{Poisson}(\lambda) , \lambda \in (0,\infty)$ \[p_k = \frac{e^{-\lambda}\lambda^k}{k!}, \text{ where }  k \geq 0 \]
+      \item Geometric: $\text{Geom}(p)$ \[p_k = (1-p)^{k-1}p, \text{ where } k\geq 1\]
+      \item Binomial approaches Poisson: \[\text{Bin}(N,p) \to \text{Poisson}(Np)\]
+
+\end{itemize}
+
+\section{Random Variable}
+\begin{itemize}
+      \item Random Variable: function that assigns (say real) values to each outcome
+            \[X : \Omega \to \Omega_X (=\R \text{ or } \R^n)\]
+
+      \item Discrete random variable if $\Omega$ is countable
+            (Random variable in general probability space need $ \{\omega: X(\omega) <x \} \in \mathcal{F}$ for all $x$)
+
+      \item Indicator function: \[1_A(\omega) = \begin{cases}
+                        1 \text{, if } \omega \in A \\
+                        0 \text{, if } \omega \notin A
+                  \end{cases} \]
+
+      \item (Cumulative/probability) distribution function (for real-valued rv):
+            \[F_X(x) = P(X \leq x)\]
+            \begin{itemize}
+                  \item Piecewise constant
+                  \item Non-decreasing
+                  \item Right continuous
+                  \item $\displaystyle{\lim_{x \to -\infty} F_X(x) = 0 } $
+                  \item $\displaystyle{\lim_{x \to +\infty} F_X(x) = 1 } $
+            \end{itemize}
+            (This is equivalent to specifying the weights $(p_x)$ of the rv, i.e. specifying the probability mass function)
+
+      \item Independence: \[ P(X=x,Y=y) = P(X=x)P(Y=y) \]
+            Any $n$ random variables $X_1 , X_2, \dots X_n$ are independent iff
+            \[ P(X_1 = x_1, X_2 = x_2,  \dots X_n = x_n) =  P(X_1 = x_1) P(X_2 = x_2) \dots P(X_n = x_n) \] (This implies any subset of the rvs are independent)
+
+      \item Functions of random variables: new random variable $g(X)$ defined by
+            \[g(X)(\omega) = g(X(\omega)) \]
+\end{itemize}
+
+\section{Expectation}
+\begin{itemize}
+      \item Expectation: Probability weighted sum of values
+            \begin{align*}
+                  \text{E}(X) & = \sum_{\omega \in \Omega} X(\omega) P(\omega) \\
+                              & = \sum_{x \in \Omega_X} x P(X=x)
+            \end{align*}
+            Defined iff the expectations the positive X and negative X are not both infinite ($\text{E}(X_+)$, $\text{E}(X_-)$ )
+
+      \item Integrable: rv $X$ has $\text{E}(|X|) \leq \infty$
+      \item Properties of expectation: positive definite, linear, multiplicative if independent, $\text{E}(1(A)) = P(A)$
+
+      \item Moments: $n$-th moment $=\text{E}(X^n)$
+      \item Variance:
+            \begin{align*}
+                  \text{Var}(X) & = \text{E}((X-\text{E}(X))^2)  \\
+                                & =\text{E}(X^2)-(\text{E}(X))^2
+            \end{align*}
+
+      \item Covariance:
+            \[\text{Cov}(X,Y) = \text{E}[(X-\text{E}(X))(Y-\text{E}(Y))] \]
+
+      \item Correlation:
+            \[\text{Corr}(X,Y) = \frac{\text{Cov}(X,Y)}{\sqrt{\text{Var}(X)\text{Var}(Y)}}\]
+\end{itemize}
+
+
+\section{Inequalities}
+
+\begin{itemize}
+      \item Markov's Inequality: Given non-negative rv $X$, and $\lambda > 0$
+            \[P(X \geq \lambda) \leq \frac{\text{E}(X)}{\lambda}\]
+
+      \item Chebyshev's Inequality: Given rv $X$ with finite $\text{E}(X)$, and $\lambda > 0$
+            \[ P(|X-\text{E}(X)| \geq \lambda ) \leq \frac{\text{Var}(X)}{\lambda^2}\]
+
+      \item Cauchy-Schwarz: \[\text{E}(|XY|) \leq \sqrt{\text{E}(X^2)\text{E}(Y^2)}\]
+
+      \item Jensen's Inequality: Given convex function $f$ on $I$, $X$ integrable on $I$
+            \[f(\text{E}(X)) \leq \text{E}(f(X))\]
+            AM/GM then follows
+\end{itemize}
+
+\section{Random walk (L9)}
+\begin{itemize}
+      \item Definition \[X_n = x + Y_1 + Y_2 + \dots + Y_n, \text{ where } Y_i \text{ are iid rvs}\]
+      \item Gambler's ruin, Expected time of absorption ...
+\end{itemize}
+
+
+\section{Conditional Expectation}
+\begin{itemize}
+      \item Definition \[E(X|B) = \frac {E(X \cdot 1(B))}{P(B)} \]
+      \item Law of Total Expectation: Given $(\Omega_i)$ a partition of $\Omega$, \[E(X) = \sum E(X|\Omega_i)P(\Omega_i)\]
+      \item (Joint distribution, Marginal distribution, Conditional distribution)
+      \item Convolution: given $X,Y$ independent, $P(X+Y=z) = \sum_y P(X=z-y)P(Y=y) $
+      \item Conditional expectation of $X$ given $Y$ (a random variable in terms of $Y$): if $E(X | Y=y) = g(y)$, then $E(X|Y) = g(Y)$
+      \item \[E(X) = E_Y(E(X|Y))\]
+\end{itemize}
+
+\section{Probability generating function (L9)}
+\begin{itemize}
+      \item Definition: \[G_X(t) = \text{E}(t^X) = \sum p_k t^k \]
+      \item Can recover probability distribution by differentiation and put $0$
+      \item pgf of $S = \sum_{i=1}^n X_i$, where $X_i$ independent, is
+            \[F_S(t) = \prod_i F_{X_i}(t)\]
+      \item Random sum ($N$) of iid random variables ($X_i$): $\sum_{i=1}^N X_i$ is $F_N(F_{X_1}(t))$
+\end{itemize}
+
+\section{Branching processes (L11)}
+\begin{itemize}
+      \item Galton-Watson Process
+      \item Condition on first step, set number of branches
+      \item Extinction probability
+\end{itemize}
+
+\section{Continuous Random Variables}
+\begin{itemize}
+      \item $X$ is a continuous rv if distribution function $F_X$ is also left continuous
+      \item Probability distribution function continuous $\implies X$ is continuous
+      \item Probability distribution function differentiable $\implies X$ is absolutely continuous (then have probability density function)
+      \item Probability density function (pdf) $f(x)$ satisfies
+            \begin{align*}
+                   & f(x) \geq 0 \text{ for all } x \in \R, & \int_{\R} f(x) \dd x = 1
+            \end{align*}
+      \item Examples of distributions (L13)
+            \begin{itemize}
+                  \item Uniform distribution: $X \sim U[a,b]$ \[f_X(x) = \frac{1}{b-a} 1_{[a,b]}(x)\]
+                  \item Exponential, memoryless property: $X \sim Exp(\lambda)$ \[f_X(x) = \lambda e^{-\lambda x} 1_{\{x>0\}}(x)\]
+                  \item Gamma distribution (generalised/sum of exponential) $X \sim \Gamma(\lambda,n)$, where $\lambda >0, n\in \N$ : \[f_X(x) = e^{-\lambda x} \lambda^n \frac{x^{n-1}}{(n-1)!}, \text{ for } x\geqslant 0\]
+                  \item Standard Cauchy distribution $X \sim \text{Cauchy}(0,1)$ \[f_X(x) = \frac{1}{\pi(x^2+1)}\]
+                  \item Gaussian (standard normal) Normal: $X \sim N(\mu, \sigma^2)$ \[f_X(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^\frac{-(x-\mu)^2}{2\sigma^2}\] Distribution function of standard normal $N(0,1)$: $\Phi(x)$
+            \end{itemize}
+      \item Expectation ($E(X)= \int_\R x f_X(x) \dd x$) and variance ($Var(X)=E[(X-E(X))^2]$) of continuous rv
+\end{itemize}
+
+\section{Multivariate rv}
+\begin{itemize}
+      \item Joint distribution of rvs $X_1,\dots X_n$ \[F(x_1,\dots,x_n) = P(X_1 \leqslant x_1,\dots X_n \leqslant x_n)\]
+      \item Joint density = mixed derivative
+      \item Random variables are independent if and only if the density function factorises
+      \item Marginal density = density of one rv (integrate everything else)
+      \item Convolution (for independent rvs): \[f_{X+Y}(z) = f_X \ast f_Y(z) = \int_{-\infty}^{\infty} f_X(z-y) f_Y(y) \dd y\]
+      \item Conditional density: \[f_{X|Y}(x|y) = \frac{f_{X,Y}(x,y)}{f_{Y}(y)}\]
+      \item Conditional expectation, law of total probability
+\end{itemize}
+
+\section{Transformation of rv}
+\begin{itemize}
+      \item One-dimensional rv: \[ f_Y(y) = f_X(x) \abs{\odv{x}{y}} \]
+      \item Multi-dimensional rv: \[ f_Y(y) = f_X(x) \abs{J} \] where $J$ is the Jacobian, \[J = \det (\pdv{x_i}{y_i})_{i,j=1}^d \]
+\end{itemize}
+
+Order Statistics of a random sample (L15)
+
+\section{Simulation of random variables (L17)}
+\begin{itemize}
+      \item Want to generate rv $X$ with distribution function $F(x)$: \\
+            Using $U \sim U[0,1]$, then $F^{-1}(U)$ has same distribution as $X$
+
+      \item Rejection Sampling: \\
+            Given $A \subseteq [0,1]^d$ ($d$-dim unit cube), want to generate rv $X$ in $\R^d$ with density function $f_X(x) = \frac{1_A(x)}{\abs{A}}$ ('uniform' on $A$) \\
+
+            Use $U[0,1]$, generate a sequence of d-dimensional rv (points in unit cube) $(U_n)_{n\in \N}$, where each point is
+            \[U_n = (U_{1,n} , U_{2,n} ,\dots U_{d,n}) \]
+            Take $X = U_N$, where $N = \min{}$
+      \item Bounded density ...
+\end{itemize}
+
+\section{Moment Generating Function (L17)}
+\begin{itemize}
+      \item mgf of continuous rv $X$ \[M_X(t) = E(e^{tX}) = \int_{-\infty}^{\infty} e^{tx} f_X(x) \dd x\]
+      \item Given $X_1,\dots X_n$ independent, \[M_{X_1+X_2+\dots+X_n}(t) = \prod_{i=1}^n M_{X_i}(t)\]
+      \item Uniquely determine distribution if mgf is finite in some neighbourhood of the origin
+      \item Continuity of mgf: \\
+            Suppose $X$ is a rv, and $(X_n)$ a sequence of cts rv, if $M_{X_n}(\theta) \to M_{X}(\theta) \forall \theta \in \R$ and $M_X(\theta)$ is finite for some $\theta \neq 0$, then $X_n$ converges to $X$ in distribution
+      \item Multivariate mgf: \\
+            Suppose $X = (X_1,\dots,X_n)$ is a rv in $\R^n$, then mgf of X is \[E(e^{\theta^T X})\]
+
+\end{itemize}
+
+\section{Gaussian: Multivariate}
+\begin{itemize}
+      \item $X$ in $\R$ is Gaussian if \[X = \mu+\sigma Z, \text{ where } Z \sim N(0,1)\]
+      \item $X = \begin{pmatrix} X_1 \\ X_2 \\ \vdots \\ X_n \end{pmatrix}$ a rv in $\R^n$ is Gaussian \\
+            if $ u^T X = \sum_{i=1}^n u_i X_i  $ is Gaussian for any $u  = \begin{pmatrix} u_1 \\ u_2 \\ \vdots \\ u_n \end{pmatrix} \in \R^n$
+      \item Mean and variance \[\mu = E(X) = \begin{pmatrix} E(X_1) \\ E(X_2) \\ \vdots \\ E(X_n) \end{pmatrix} \]
+            \begin{align*}
+                  V & = \text{Var(X)}
+                  \\ &= E((X-\mu)(X-\mu)^T)
+                  \\ &=  E \begin{pmatrix}
+                        (X_1-\mu_1)^2 & (X_1-\mu_1)(X_2-\mu_2) & \cdots & (X_1-\mu_1)(X_n-\mu_n) \\
+                        \vdots        & (X_2-\mu_2)^2          & \cdots & \vdots                 \\
+                        \vdots        & \vdots                 & \ddots & \vdots                 \\
+                        \vdots        & \cdots                 & \cdots & (X_n-\mu_n)^2
+                  \end{pmatrix}
+                  \\ &= (\text{Cov}(X_i,X_j))
+            \end{align*}
+      \item mgf of $X$ is \[M_X(\lambda) = E(e^{\lambda^T X}) = e^{\lambda^T \mu + \frac{\lambda^T V \lambda}{2}}\] (uniquely determined by mean and variance), written $X \sim N(\mu, V)$
+      \item Can use $Z = (Z_1, \dots Z_n)$, where $(Z_i)$ iid $\sim N(0,1)$ in $\R^n$ to construct any $n$-dim Gaussian vector: $X = \mu + \sigma Z \sim N(\mu, V)$  ($\sigma$ is the square root of matrix $V$)
+      \item Density of X: \\
+            $X = \mu + \sigma Z$, if $V$ is positive definite (invertible), have density function
+            \begin{align*}
+                  f_X(x) & = f_Z(z) |J|                                                                          \\
+                         & = \prod_{i=1}^n \left( \frac{1}{\sqrt{2\pi}} e^{-z_i^2 /2} \right) |\det \sigma^{-1}| \\
+                         & = \frac{1}{(2\pi)^{n/2}} e^{-z^T z/2} \frac{1}{(\det V)^{1/2}}                        \\
+                         & = \frac{1}{(2\pi)^{n/2} (\det V)^{1/2} } e^{\frac{-(x-\mu)^T V (x-\mu)}{2}}
+            \end{align*}
+            In general: non-negative definite (can have zero eigenvalues): diagonalise $V$ to get \[V = \left( \begin{array}{c|c}
+                              U        & 0 \\
+                              \hline 0 & 0
+                        \end{array} \right),\] where $U$ is an $m\times m$ positive definite matrix.
+            Write $\mu = \begin{pmatrix} \lambda \\ \nu \end{pmatrix}$, where $\lambda \in \R^m$.
+            Then $X = \begin{pmatrix} Y \\ \nu \end{pmatrix}$, and density of Y is given by
+            \[ f_Y(y) = \frac{1}{(2\pi)^{m/2} (\det U)^{1/2} } e^{\frac{-(y-\lambda)^T U (y-\lambda)}{2}} \]
+
+      \item Bivariate normal
+      \item (Multivariate Central Limit Theorem)
+\end{itemize}
+
+
+\section{Limit Theorems}
+\begin{itemize}
+      \item Weak law of large numbers: \\
+            Given $S_n = X_1 + \dots + X_n$, where $(X_i)$ iid with $E(X_1) = \mu <\infty $, then for all $\varepsilon >0,$ as $n \to \infty$ \[ P \left( \abs{\frac{S_n}{n}-\mu} > \varepsilon \right) \to 0\]
+            (converge in probability)
+      \item Strong law of large numbers: \\
+            Given $S_n = X_1 + \dots + X_n$, where $(X_i)$ integrable iid with $E(X_1) = \mu <\infty $, then \[P \left( \lim_{n\to \infty} \frac{S_n}{n} = \mu \right) = 1 \]
+            (almost surely/converge with prob 1)
+      \item Central Limit Theorem: \\
+            Given $S_n = X_1 + \dots + X_n$, where $(X_i)$ iid with $E(X_1) = \mu < \infty$ and $\text{Var}(X_1) = \sigma^2 < \infty$, then \[P \left( \frac{S_n - n\mu}{\sigma \sqrt{n}} \leq x \right) \to \Phi(x) \]
+            \[\text{ i.e. } S_n \sim N(n\mu, n\sigma^2) \]
+\end{itemize}
+
+\section{Geometric Probs}
+\begin{itemize}
+      \item Box Muller Transform
+      \item Buffon's needle
+      \item Bertrand's paradox: defn of random
+\end{itemize}
+
+\end{document}

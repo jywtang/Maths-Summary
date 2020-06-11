@@ -1,0 +1,227 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{babel}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{centernot}
+\usepackage{tcolorbox}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{xparse}
+
+\usetikzlibrary{arrows}
+
+\setlength{\parindent}{0pt}
+
+
+% Matrix groups
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\M}{\mathrm{M}}
+\newcommand{\Or}{\mathrm{O}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\PSO}{\mathrm{PSO}}
+\newcommand{\PSU}{\mathrm{PSU}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+
+% Special sets
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\GG}{\mathbb{G}}
+\newcommand{\N}{\mathbb{N}}
+% \newcommand{\P}{\mathbb{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\H}{\mathbb{H}}
+
+% Brackets
+\renewcommand{\vec}[1]{\boldsymbol{\mathbf{#1}}}
+\newcommand{\cis}[1]{ \cos\left( #1 \right) + i \sin \left( #1 \right)}
+
+% Algebra
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\disc}{disc}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\fix}{fix}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\image}{image}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\Bilin}{\mathrm{Bilin}}
+\newcommand{\Frob}{\mathrm{Frob}}
+
+
+
+\let\Im\relax
+\let\Re\relax
+
+
+\DeclareMathOperator{\hcf}{hcf}
+\DeclareMathOperator{\Isom}{Isom}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Ker}{Ker}
+
+
+% Theorems
+\theoremstyle{definition}
+\newtheorem*{aim}{Aim}
+\newtheorem*{axiom}{Axiom}
+\newtheorem*{claim}{Claim}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{conjecture}{Conjecture}
+\newtheorem*{defi}{Definition}
+\newtheorem*{eg}{Example}
+\newtheorem*{ex}{Exercise}
+\newtheorem*{fact}{Fact}
+\newtheorem*{law}{Law}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{notation}{Notation}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{question}{Question}
+\newtheorem*{rrule}{Rule}
+\newtheorem*{thm}{Theorem}
+\newtheorem*{assumption}{Assumption}
+
+\newtheorem*{remark}{Remark}
+\newtheorem*{warning}{Warning}
+\newtheorem*{exercise}{Exercise}
+
+\newtheorem{nthm}{Theorem}[section]
+\newtheorem{nlemma}[nthm]{Lemma}
+\newtheorem{nprop}[nthm]{Proposition}
+\newtheorem{ncor}[nthm]{Corollary}
+
+
+\newcommand{\abs}[1]{\left| #1 \right|} % for absolute value
+\newcommand{\grad}[1]{\mathbf{\nabla} #1} % for gradient
+\let\divsymb=\div % rename builtin command \div to \divsymb
+\renewcommand{\div}[1]{\mathbf{\nabla} \cdot #1} % for divergence
+\newcommand{\curl}[1]{\mathbf{\nabla} \times #1} % for curl
+
+
+
+
+% Derivatives
+
+\newcommand{\dd}[1][]{\mathrm{d} #1}
+\newcommand{\odiff}[1]{\frac{\dd}{\dd{#1}}}
+\newcommand{\odv}[2]{\frac{\dd{#1}}{\dd{#2}}}
+\newcommand{\pdiff}[1]{\frac{\partial}{\partial{#1}}}
+\newcommand{\pdv}[2]{\frac{\partial{#1}}{\partial{#2}}}
+
+
+% \def\diffd{\mathrm{d}}
+% \DeclareDocumentCommand\differential{ o g d() }{ % Differential 'd'
+%     % o: optional n for nth differential
+%     % g: optional argument for readability and to control spacing
+%     % d: long-form as in d(cos x)
+%     \IfNoValueTF{#2}{
+%         \IfNoValueTF{#3}
+%         {\diffd\IfNoValueTF{#1}{}{^{#1}}}
+%         {\mathinner{\diffd\IfNoValueTF{#1}{}{^{#1}}\argopen(#3\argclose)}}
+%     }
+%     {\mathinner{\diffd\IfNoValueTF{#1}{}{^{#1}}#2} \IfNoValueTF{#3}{}{(#3)}}
+% }
+% \DeclareDocumentCommand\dd{}{\differential} % Shorthand for \differential
+
+% \DeclareDocumentCommand\derivative{ s o m g d() }
+% { % Total derivative
+%     % s: star for \flatfrac flat derivative
+%     % o: optional n for nth derivative
+%     % m: mandatory (x in df/dx)
+%     % g: optional (f in df/dx)
+%     % d: long-form d/dx(...)
+%     \IfBooleanTF{#1}
+%     {\let\fractype\flatfrac}
+%     {\let\fractype\frac}
+%     \IfNoValueTF{#4}
+%     {
+%         \IfNoValueTF{#5}
+%         {\fractype{\diffd \IfNoValueTF{#2}{}{^{#2}}}{\diffd #3\IfNoValueTF{#2}{}{^{#2}}}}
+%         {\fractype{\diffd \IfNoValueTF{#2}{}{^{#2}}}{\diffd #3\IfNoValueTF{#2}{}{^{#2}}} \argopen(#5\argclose)}
+%     }
+%     {\fractype{\diffd \IfNoValueTF{#2}{}{^{#2}} #3}{\diffd #4\IfNoValueTF{#2}{}{^{#2}}}}
+% }
+% \DeclareDocumentCommand\dv{}{\derivative} % Shorthand for \derivative
+
+% \DeclareDocumentCommand\partialderivative{ s o m g g d() }
+% { % Partial derivative
+%     % s: star for \flatfrac flat derivative
+%     % o: optional n for nth derivative
+%     % m: mandatory (x in df/dx)
+%     % g: optional (f in df/dx)
+%     % g: optional (y in d^2f/dxdy)
+%     % d: long-form d/dx(...)
+%     \IfBooleanTF{#1}
+%     {\let\fractype\flatfrac}
+%     {\let\fractype\frac}
+%     \IfNoValueTF{#4}
+%     {
+%         \IfNoValueTF{#6}
+%         {\fractype{\partial \IfNoValueTF{#2}{}{^{#2}}}{\partial #3\IfNoValueTF{#2}{}{^{#2}}}}
+%         {\fractype{\partial \IfNoValueTF{#2}{}{^{#2}}}{\partial #3\IfNoValueTF{#2}{}{^{#2}}} \argopen(#6\argclose)}
+%     }
+%     {
+%         \IfNoValueTF{#5}
+%         {\fractype{\partial \IfNoValueTF{#2}{}{^{#2}} #3}{\partial #4\IfNoValueTF{#2}{}{^{#2}}}}
+%         {\fractype{\partial^2 #3}{\partial #4 \partial #5}}
+%     }
+% }
+% \DeclareDocumentCommand\pderivative{}{\partialderivative} % Shorthand for \partialderivative
+% \DeclareDocumentCommand\pdv{}{\partialderivative} % Shorthand for \partialderivative
+
+\DeclareDocumentCommand\variation{ o g d() }{ % Functional variation
+    % o: optional n for nth differential
+    % g: optional argument for readability and to control spacing
+    % d: long-form as in d(F(g))
+    \IfNoValueTF{#2}{
+        \IfNoValueTF{#3}
+        {\delta \IfNoValueTF{#1}{}{^{#1}}}
+        {\mathinner{\delta \IfNoValueTF{#1}{}{^{#1}}\argopen(#3\argclose)}}
+    }
+    {\mathinner{\delta \IfNoValueTF{#1}{}{^{#1}}#2} \IfNoValueTF{#3}{}{(#3)}}
+}
+\DeclareDocumentCommand\var{}{\variation} % Shorthand for \variation
+
+\DeclareDocumentCommand\functionalderivative{ s o m g d() }
+{ % Functional derivative
+    % s: star for \flatfrac flat derivative
+    % o: optional n for nth derivative
+    % m: mandatory (g in dF/dg)
+    % g: optional (F in dF/dg)
+    % d: long-form d/dx(...)
+    \IfBooleanTF{#1}
+    {\let\fractype\flatfrac}
+    {\let\fractype\frac}
+    \IfNoValueTF{#4}
+    {
+        \IfNoValueTF{#5}
+        {\fractype{\variation \IfNoValueTF{#2}{}{^{#2}}}{\variation #3\IfNoValueTF{#2}{}{^{#2}}}}
+        {\fractype{\variation \IfNoValueTF{#2}{}{^{#2}}}{\variation #3\IfNoValueTF{#2}{}{^{#2}}} \argopen(#5\argclose)}
+    }
+    {\fractype{\variation \IfNoValueTF{#2}{}{^{#2}} #3}{\variation #4\IfNoValueTF{#2}{}{^{#2}}}}
+}
+\DeclareDocumentCommand\fderivative{}{\functionalderivative} % Shorthand for \functionalderivative
+\DeclareDocumentCommand\fdv{}{\functionalderivative} % Shorthand for \functionalderivative

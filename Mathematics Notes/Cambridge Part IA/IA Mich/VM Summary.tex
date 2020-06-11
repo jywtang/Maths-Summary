@@ -1,0 +1,411 @@
+\input{../../header}
+
+\begin{document}
+
+\section*{Vectors and Matrices \hfill IA Mich}
+
+Read hermitian matrix diagonalisable proof, and supo notes
+
+\section{Complex numbers}
+\begin{itemize}
+      \item Definitions
+            \begin{itemize}
+                  \item Construct $\mathbb{C}\textrm{ from \ensuremath{\mathbb{R}} with element \ensuremath{i} such that }i^{2}=-1$
+                  \item Addition, multiplication, Complex conjugate $(\bar{z}\textrm{ or }z^{*})$
+                  \item Modulus, argument (multi-valued, restrict using principal value),
+                        Argand diagram
+            \end{itemize}
+      \item Properties
+            \begin{itemize}
+                  \item $\mathbb{C}$ is a field (with $+ - \times \div $, associative, commutative,
+                        distributive)
+                  \item Fundamental Theorem of Algebra
+                  \item Geometric representation of addition, subtraction, complex conjugation
+                  \item Composition property: $|z_{1}z_{2}|=|z_{1}||z_{2}|$
+                  \item Triangle inequality: $|z_{1}+z_{2}|\leq|z_{1}|+|z_{2}|$, and alternatively
+                        $|z_{1}-z_{2}|\geq\left||z_{1}|-|z_{2}|\right|$
+                  \item Multiplying complex numbers: moduli multiply, arguments add
+                  \item De Moivre's Theorem
+            \end{itemize}
+      \item Exponential and Trig functions
+            \begin{itemize}
+                  \item Define $\exp(z)=\sum_{n=0}^{\infty}\frac{z^{n}}{n!}$, $\sin(z),\cos(z)$
+                        in terms of $e^{z}$, consistent with usual rules, thus can have exponential
+                        form of complex numbers
+                  \item Roots of unity: $z^{n}=1\iff z=\exp(\frac{2k\pi i}{n}),k=0,1,...,n-1$
+            \end{itemize}
+      \item Logarithm and Complex Powers
+            \begin{itemize}
+                  \item Define $\log$ as inverse of exp
+                  \item $z=|z|e^{i\arg(z)}\implies\log(z)=\log|z|+i\arg(z)$ (multi-valued
+                        as $\arg(z)$ is multi-valued, can restrict using principal value)
+                  \item Complex power: $z^{\alpha}=e^{\alpha\log(z)}$, generally infinitely
+                        many values, may be finite in special cases (integer/rational exponent)
+            \end{itemize}
+      \item Lines and Circles
+            \begin{itemize}
+                  \item Line: parametric (point and direction), and non-parametric (eliminate
+                        by taking complex conjugate)
+                  \item Circles: $|z-c|=\rho$ (or expanded) or $z=c+\rho e^{i\theta}$
+            \end{itemize}
+      \item Geometric transformations described in $\mathbb{C}$: translation,
+            scaling, rotation, reflection, inversion; relation to Möbius transformation
+\end{itemize}
+
+\section{Vectors in 3D}
+\begin{itemize}
+      \item Euclidean space: vectors have direction and magnitudes
+      \item Addition and scalar multiplication (Geometric)
+            \begin{itemize}
+                  \item Parallelogram construction, scalar multiplication by extending
+                  \item Properties: identity, inverses, commutativity, associativity, distributivity
+                  \item Linear combination and span of vectors
+                  \item Parallel: one vector being a scalar multiple of the other, otherwise
+                        the two vectors span a plane (allow $\mathbf{0\parallel a}$ for all
+                        $\mathbf{a}$ in this definition)
+            \end{itemize}
+      \item Scalar/dot/inner product (Geometric)
+            \begin{itemize}
+                  \item Definition: $\mathbf{a\cdot b}=|\mathbf{a}||\mathbf{b}|\cos\theta$,
+                        using magnitude and angle between the vectors
+                  \item Properties: symmetric, positive definite, scalar multiple can 'move
+                        around', distributive
+                  \item Orthogonality: $\mathbf{a\perp b}\iff\mathbf{a\cdot b}=0$ (allow
+                        $\mathbf{0\perp a}$ for all $\mathbf{a}$ in this definition)
+                  \item Resolving a vector along another one: component of $\mathbf{b}$ along $\mathbf{a}$ is given by (in magnitude)
+                        \[\mathbf{|b|}\cos\theta=\mathbf{\frac{a\cdot b}{|a|}} \]
+            \end{itemize}
+      \item Orthonormal Bases
+            \begin{itemize}
+                  \item A set of orthonormal vectors $\mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}$(or
+                        $\mathbf{\hat{i},\hat{j},\hat{k}}$) are each of unit length and mutually
+                        perpendicular: $\mathbf{e}_{i}\cdot\mathbf{e}_{j}=\delta_{ij}$
+                  \item Equivalent to choosing Cartesian axes along the 3 directions
+                  \item Basis $\{\mathbf{e}_{i}\}$: linearly independent and span: Any vector
+                        can be represented uniquely by a linear combination of the three vectors:
+                        ${\displaystyle \mathbf{a}=\sum_{i}a_{i}\mathbf{e}_{i}}$, components
+                        determined by dotting $\mathbf{a}$ with each of the basis vectors
+                  \item Notion of components: $(a_{1},a_{2},a_{3})$ or $\left(\begin{array}{c}
+                                          a_{1} \\
+                                          a_{2} \\
+                                          a_{3}
+                                    \end{array}\right)$
+            \end{itemize}
+      \item Vector/Cross product (Geometric)
+            \begin{itemize}
+                  \item Definition: $\mathbf{a\times b}=|\mathbf{a}||\mathbf{b}|\sin\theta\mathbf{\hat{n}},$where
+                        $\mathbf{\hat{n}}$ (unit normal vector) and $\theta$ are defined
+                        in a right-handed sense
+                  \item Signed area of parallelogram, with sign giving orientation
+                  \item Can be seen as rotating and scaling a vector at the same time (p.15)
+                  \item Define a orthonormal right-handed set by cross product, then cross
+                        products can be expressed in components
+            \end{itemize}
+      \item Triple Products
+            \begin{itemize}
+                  \item Scalar triple product: signed volume of parallelepiped, test for coplanar
+                        vectors
+                  \item Vector triple product: $\mathbf{a\times}(\mathbf{b}\times\mathbf{c})=(\mathbf{a\cdot c})\mathbf{b}-(\mathbf{a}\cdot\mathbf{b})\mathbf{c}$
+            \end{itemize}
+      \item Lines, planes and vector equations
+            \begin{itemize}
+                  \item Line: $\mathbf{r}=\mathbf{a}+\lambda\mathbf{u}$ (parametric form);
+                        $\mathbf{u}\times\mathbf{r}=\mathbf{c}=$ constant (non-parametric)
+                  \item Plane: $\mathbf{r}=\mathbf{a}+\lambda\mathbf{u}+\lambda\mathbf{v}$,
+                        with $\mathbf{u}$ and $\mathbf{v}$ non-parallel in the plane (parametric
+                        form); $\mathbf{n}\cdot\mathbf{r}=\mathbf{n\cdot a=\kappa}$, with
+                        $\mathbf{n}$ normal vector to the plane;
+                  \item Perpendicular distance of plane from origin $={\displaystyle \frac{|\kappa|}{|\mathbf{n}|}}$
+                  \item Vector equations: eliminate $\mathbf{r}$ by taking products; consider
+                        cases; let $\mathbf{r}$ be a linear combination of constant vectors
+                        and solve for coefficients, complete square
+            \end{itemize}
+      \item Index notation and summation convention (Algebraic)
+            \begin{itemize}
+                  \item Free indices appear exactly once in every term: represent components;
+                        Dummy indices appear exactly twice in each term, and are summed up;
+                  \item Nothing should appear more than twice
+                  \item Kronecker Delta $\delta_{ij}$: represent identity matrix $I$
+                  \item Levi-Civita Epsilon $\epsilon_{ijk}$: antisymmetric, commonly used
+                        in cross product, determinant
+                  \item Identities: $\epsilon_{ijk}\epsilon_{pqk}=\delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp}$,
+                        ``same minus different''
+            \end{itemize}
+\end{itemize}
+
+\section{Vectors in general, $\mathbb{R}^{n}$ and $\mathbb{C}^{n}$ (Algebraic)}
+\begin{itemize}
+      \item $\mathbb{R}^{n}$: set of real n-tuples, form linear combination by
+            addition and (real) scalar multiplication
+            \begin{itemize}
+                  \item Component expression correspond to a standard basis
+                  \item Inner product on $\mathbb{R}^{n}$: symmetric, bilinear (linear in
+                        both arguments), positive definite ($\mathbf{x}\cdot\mathbf{x}\geq0,\textrm{ equality holds\ensuremath{\iff}}\mathbf{x}=\mathbf{0})$
+                  \item Parallel, orthogonality, and (Euclidean) norm of vectors
+                  \item Cauchy-Schwarz inequality: $|\mathbf{x\cdot y}|\leq|\mathbf{x}||\mathbf{y}|$
+                        for $\mathbf{x},\mathbf{y}\in\mathbb{R}^{n}$, with equality iff $\mathbf{x}=\lambda\mathbf{y}$
+                        or $\mathbf{y}=\lambda\mathbf{x}$ for $\lambda\in\mathbb{R}$; thus
+                        can define angle between vectors in $\mathbb{R}^{n}$ by inner product
+                  \item Triangle inequality: $|\mathbf{x+y}|\leq|\mathbf{x}|+|\mathbf{y}|$
+                  \item Vector inner product as matrix multiplication: $\mathbf{x\cdot y}=\mathbf{x}^{T}\mathbf{y}$
+                  \item Inner product carries to higher dimensions from $\mathbb{R}^{3}$,
+                        but cross product cannot (due to $\epsilon_{ij...k}$ with too many
+                        free indices)
+                  \item Instead, $\epsilon_{ij}x_{i}y_{j}$ defines an alternative scalar
+                        product in 2D, which generalises to scalar triple product in 3D
+            \end{itemize}
+      \item Vector spaces
+            \begin{itemize}
+                  \item Defining vector spaces with axioms that enable addition, scalar multiplication
+                        (e.g. distributive, associative, identity)
+                  \item For a set of vectors $\mathbf{v}_{i}\in V$, a vector space, define
+                        $\textrm{span}\{\mathbf{v}_{i}\}=\{\sum_{i}\lambda_{i}\mathbf{v}_{i}\}$,
+                        the set of all linear combinations
+                  \item The span of a set of vectors forms a subspace of $V$ (a subset and
+                        itself a vector space); a subspace must contain $\mathbf{0}$
+                  \item Linearly independent: $\sum_{i}\lambda_{i}\mathbf{v}_{i}=\mathbf{0}\implies\lambda_{i}=0$
+                        for all $i$
+                  \item Linear dependence: $\sum_{i}\lambda_{i}\mathbf{v}_{i}=\mathbf{0}$
+                        has non-trivial solutions; i.e. some vector in the set can be written
+                        as a linear combination of the others
+                  \item Inner products obey the three properties: symmetric, bilinear, positive
+                        definite
+            \end{itemize}
+      \item Bases and dimension
+            \begin{itemize}
+                  \item Basis: linearly independent and spans the vector space $V$ ; thus
+                        each point in $V$ has a unique linear combination
+                  \item Any set of bases of $V$ has the same number of elements, defined
+                        to be $\dim V$
+                  \item A spanning set with more vectors than $\dim V$ is not linearly dependent
+                        (can remove one); a linearly independent set with less vectors than
+                        $\dim V$ does not span (can add one)
+                  \item A set of mutually orthogonal non-zero vectors is linearly independent
+                        (dot with each vector, everything else vanish)
+            \end{itemize}
+      \item Vectors in $\mathbb{C}^{n}$
+            \begin{itemize}
+                  \item $\mathbb{C}^{n}$: Vector space with linear combinations (complex
+                        scalar multiple), thus has $n$ basis vectors
+                  \item Inner product: $(\mathbf{z},\mathbf{w})=\sum_{j}\bar{z_{j}}w_{j}$
+                  \item Inner product as matrix multiplication: $(\mathbf{z},\mathbf{w})=\mathbf{z^{\dagger}}\mathbf{w}$
+                  \item Properties: hermitian ($(\mathbf{z},\mathbf{w}) = \overline{(\mathbf{w},\mathbf{z})}$), anti-linear/linear (in first/second argument),
+                        positive definite; scalar products in $\mathbb{R}^{2}$ recovered
+                        in inner product on $\mathbb{C}$
+                  \item Define length/norm, orthogonality, orthonormal basis, linear independence
+                        (where $\mathbf{z^{\dagger}}=\bar{\mathbf{z}}^T$, a row vector
+                        with components $\bar{z_{i}}$)
+            \end{itemize}
+\end{itemize}
+
+\section{Matrices and Linear Map}
+\begin{itemize}
+      \item Linear transformation/map
+            \begin{itemize}
+                  \item A function $T:V\to W$, between vector spaces $V$ (with dim $n$)
+                        and $W$ (with dim $m$): satisfying $T(\lambda\mathbf{x}+\mu\mathbf{y})=\lambda T(\mathbf{x})+\mu T(\mathbf{y})$,
+                        where $\lambda$ and $\mu$ real/complex (a field in general)
+                  \item Image, kernel, rank, nullity, rank-nullity theorem
+                  \item Linear combination and composition of linear maps
+            \end{itemize}
+      \item Matrices as linear maps
+            \begin{itemize}
+                  \item Matrices define a transformation by $x'_{i}=M_{ij}x_{j}$ (summation)
+                  \item The i-th basis vector is mapped to the i-th column; image of matrix
+                        is the span of columns
+                  \item $x'_{i}=(\mathbf{R}_{i})_{j}x_{j}=\mathbf{R}_{i}\cdot\mathbf{x}$:
+                        dotting the i-th row with $\mathbf{x}$ gives the i-th component of
+                        $\mathbf{x'}$; kernel of matrix is $\{\mathbf{x}:\mathbf{R}_{i}\cdot\mathbf{x}=0\textrm{ for all i}\}$
+            \end{itemize}
+      \item Geometric examples of linear map: $\mathbb{R}^{3}\to\mathbb{R}^{3}$
+            \begin{itemize}
+                  \item Rotation (about a unit vector $\mathbf{\hat{n}}$)
+                  \item Reflection (in a plane through $\mathbf{0}$ with unit normal $\mathbf{\hat{n}}$)
+                  \item Dilation (along three axes)
+                  \item Shear
+            \end{itemize}
+      \item Matrices in general
+            \begin{itemize}
+                  \item Given vector spaces $V$ (dim $n$) with basis $\{\mathbf{e_{1}},\mathbf{e_{2}},...,\mathbf{e_{n}}\}$,
+                        and $W$ (dim $m$) with basis $\{\mathbf{f_{1}},\mathbf{f_{2}},...,\mathbf{f_{m}}\}$,
+                        the linear map $T:V\to W$ w.r.t. to the given bases can be represented
+                        by an $n\times m$ matrix $M$, where $T(\mathbf{e_{i}})=\sum_{a}M_{ai}\mathbf{f_{a}}$,
+                        i.e. image of $\mathbf{e_{i}}$ is the $i$-th column of $M$ with
+                        respect to basis $\{\mathbf{f_{a}}\}$
+                  \item $T(\mathbf{x})_{i}=\sum_{j}M_{ij}x_{j}=$ dot product of $i$-th row
+                        of $M$ with $\mathbf{x}$
+                  \item Given bases of each vector space, vectors and transformation become
+                        components and matrices ($\mathbb{F}^{n},\mathbb{F}^{m}$ and $M_{n\times m}(\mathbb{F})$)
+                  \item Matrix addition, scalar multiplication and matrix multiplication represent
+                        adding, scaling and composition of linear maps
+                  \item Invertible/non-singular matrices: left/right inverse, same inverse
+                        for square matrices
+            \end{itemize}
+      \item Operation and properties of matrices
+            \begin{itemize}
+                  \item Transpose and hermitian conjugate: (need not be square matrix) properties
+                        under adding, scaling and product of matrices
+                  \item Symmetric ($A^{T}=A$), anti-symmetric ($A^{T}=-A$), hermitian ($A^{\dagger}=A$),
+                        anti-hermitian ($A^{\dagger}=-A$)
+                  \item Trace, decomposition of square matrices into antisymmetric + symmetric
+                        traceless + isotropic (multiple of identity)
+            \end{itemize}
+      \item Orthogonal and Unitary matrices
+            \begin{itemize}
+                  \item Orthogonal matrix: $A^{T}=A^{-1}$, inner product preserved, rows
+                        orthonormal, columns orthonormal
+                  \item General $2\times2$ orthogonal matrices: rotation or reflection (distinguished
+                        by determinant of matrix)
+                  \item Unitary matrix: $A^{\dagger}=A^{-1}$, complex inner product preserved
+            \end{itemize}
+\end{itemize}
+
+\section{Determinants and Inverses}
+\begin{itemize}
+      \item Determinant
+            \begin{itemize}
+                  \item Factor by which the signed (n-dim) volume is scaled by the transformation
+                  \item $\det A\neq0\iff$ linear dependence
+                  \item Sum over indices: ${\displaystyle \det A=\sum_{i_{1},i_{2},...,i_{n}}\varepsilon_{i_{1}i_{2}...i_{n}}A_{i_{1}1}A_{i_{2}2}...A_{i_{n}n}}$,
+                        extended from 3D case
+                  \item Sum over permutations in $S_{n}$:${\displaystyle \det A=\sum_{\sigma\in S_{n}}\varepsilon(\sigma)}A_{\sigma(1)1}A_{\sigma(2)2}...A_{\sigma(n)n}$,
+                        sign of permutation $\varepsilon(\sigma)$
+                  \item Scaling a row/column, scaling the whole matrix, row and column operations/exchanges,
+                        transpose property, multiplicative property
+                  \item Expand along column or row
+            \end{itemize}
+      \item Minors, cofactors and inverses
+            \begin{itemize}
+                  \item Minor: $M^{ij}=$ det of matrix $M$ with $i$-th row and $j$-th
+                        col deleted
+                  \item Cofactor of $\Delta_{ij}=(-1)^{i+j}M^{ij}$ (signed minor)
+                  \item Adjugate: transpose of the cofactor matrix, so $M^{-1}=\frac{1}{\det M}\Delta^{T}$
+            \end{itemize}
+      \item System of linear equations $A\mathbf{x}=\mathbf{b}$, where $\mathbf{x},\boldsymbol{b}\in\mathbb{R}^{n}$,
+            and $A\in M_{n\times n}(\mathbb{R})$
+            \begin{itemize}
+                  \item Existence and nature of solutions:
+                        \begin{itemize}
+                              \item $\det A\neq0\iff\mathtt{\textrm{Im}}A=\mathbb{R}^{n}\textrm{\ensuremath{\iff}}\textrm{Ker}A=\{\mathbf{0}\}\iff$
+                                    unique solution
+                              \item $\det A=0\textrm{ and }\mathbf{b}\in\mathtt{\textrm{Im}}A\iff$ infinitely
+                                    many solution
+                              \item $\det A=0\textrm{ and }\mathbf{b}\notin\mathtt{\textrm{Im}}A\iff$
+                                    no solutions
+                              \item General solution (if there exists particular solution $\mathbf{x_{0}}$)
+                                    is $\mathbf{x}=\mathbf{x_{0}}+\textrm{Ker}A$
+                        \end{itemize}
+                  \item Can interpret each equation as a (hyper-)plane in $\mathbb{R}^{n}$,
+                        intersection is the set of solutions
+                        \begin{itemize}
+                              \item Homogeneous equation: each plane passes through origin, so must have
+                                    at least one solution: $\mathbf{0}$
+                              \item Inhomogeneous: may not pass through origin, solution not guaranteed
+                        \end{itemize}
+                  \item Gaussian Elimination: reduce to echelon form, (variables that are
+                        not pivot columns have 'degree of freedom')
+            \end{itemize}
+\end{itemize}
+
+\section{Eigenvalues and eigenvectors}
+\begin{itemize}
+      \item Introduction
+            \begin{itemize}
+                  \item Given a linear map $T:V\to V$, an eigenvector $\mathbf{v}\in V\backslash\{\mathbf{0}\}$
+                        with eigenvalue $\lambda\in\mathbb{F}$ (where $V$ is defined over)
+                        satisfies $T(\mathbf{v})=\lambda\mathbf{v}$
+                  \item Given a basis, can express the map with a matrix $A$, then have $A\mathbf{v}=\lambda\mathbf{v}\iff\chi_{A}(\lambda)=\det(A-\lambda I)=0$
+                        (characteristic polynomial)
+                  \item $\chi_{A}(\lambda)=0$ has $n$ roots (counted with multiplicity)
+                        in $\mathbb{C}$, by FTA; deduce $\textrm{tr}A$, $\det A$ from the
+                        equation
+                  \item Eigenspace $E_{\lambda}$, geometric multiplicity $m_{\lambda}$,
+                        algebraic multiplicity $M_{\lambda}$, defect $\Delta_{\lambda}$
+                  \item Eigenvectors with distinct eigenvalues are linearly independent
+            \end{itemize}
+      \item Diagonalisability
+            \begin{itemize}
+                  \item Diagonalisable: eigenvectors form a basis $\iff$ there exists invertible
+                        matrix $P$ such that $P^{-1}AP=D$, with entries being the eigenvalues
+                  \item Criteria:
+                        \begin{itemize}
+                              \item Sufficient but not necessary: an $n\times n$ matrix has $n$ distinct
+                                    eigenvalues $\implies$ form a basis
+                              \item Sufficient and necessary: $M_{\lambda}=m_{\lambda}\textrm{ for each }\lambda$
+                                    ($n$ linearly independent eigenvectors, form a basis)
+                        \end{itemize}
+            \end{itemize}
+      \item Similar matrix
+            \begin{itemize}
+                  \item $A$ and $B$ are similar $\iff\exists$ invertible $P$ s.t. $B=P^{-1}AP$
+                        (all n-dimensional), equivalence class
+                  \item Similar matrices have same trace, determinant, characteristic polynomial
+            \end{itemize}
+      \item Hermitian and symmetric matrices
+            \begin{itemize}
+                  \item Hermitian matrices have real eigenvalues, eigenvectors with distinct
+                        eigenvalues are orthogonal (complex inner product)
+                  \item Real symmetric: can choose real eigenvectors for each real eigenvalue,
+                        the eigenvectors are orthogonal (real inner product)
+                  \item Gram-Schmidt Orthogonalisation: transform any basis into orthonormal
+                        basis (e.g. the union of bases of eigenspaces with distinct eigenvalues
+                        can be orthogonalised)
+                  \item Any hermitian (real symmetric) matrix is unitarily (orthogonally)
+                        diagonalisable: can choose orthonormal set of eigenvectors , i.e.
+                        $P$ can be chosen to be unitary (orthogonal)\\
+                        % (read proof on moodle)
+            \end{itemize}
+      \item Cayley-Hamilton Theorem: any matrix satisfies its own characteristic
+            equation
+\end{itemize}
+
+\section{Change of Bases, Canonical form and Symmetries}
+\begin{itemize}
+      \item Change of bases:
+            \begin{itemize}
+                  \item Transformation matrix: the $i$-th column of P is the $i$-th vector
+                        in the new basis w.r.t. the old basis: $\mathbf{e'_{i}}=\sum_{j}P_{ji}\mathbf{e_{j}}$
+                  \item $A'=P^{-1}AP$: similar matrices represent same linear map w.r.t.
+                        different bases
+            \end{itemize}
+      \item Jordan Canonical Form:
+            \begin{itemize}
+                  \item Classify square matrices by similarity: 2D case classify by eigenvalue
+                        and multiplicities
+            \end{itemize}
+      \item Quadratic Forms
+            \begin{itemize}
+                  \item Given real-symmetric matrix $A$: the quadratic form is $\mathcal{F}(\mathbf{x})=\mathbf{x}^{T}A\mathbf{x}=x_{i}A_{ij}x_{j}$
+                  \item Real-symmetric matrix can be orthogonally diagonalised (by above)
+                        with $D=P^{-1}AP$, i.e. has an orthonormal basis of eigenvectors,
+                        the principal axes of $\mathcal{F}$
+                  \item Using coordinates w.r.t. the principal axes (i.e. letting $\mathbf{x}=P\mathbf{x'}$),
+                        then $\mathcal{F}(\mathbf{x})=\mathbf{x'}^{T}D\mathbf{x'}=\sum_{i}\lambda_{i}x'^{2}_{i}$
+                  \item Signs of eigenvalues and value of $\mathcal{F}(\mathbf{x})$ determine
+                        shape
+            \end{itemize}
+      \item Quadrics and conics
+            \begin{itemize}
+                  \item General quadric: $Q(\mathbf{x})=\mathbf{x}^{T}A\mathbf{x}+\mathbf{b}^{T}\mathbf{x}+c=A_{ij}x_{i}x_{j}+b_{i}x_{i}+c=0$,
+                        defines a surface in $\mathbb{R}^{n}$
+                  \item Completing the square gives quadratic form
+                  \item Conics: classify up to translation and orthogonal transformation (diagonalising)
+            \end{itemize}
+      \item Symmetries and Transformation Groups
+            \begin{itemize}
+                  \item Orthogonal and special orthogonal group $O(n),SO(n)$: length, volume
+                        (and orientation) preserving
+                  \item Can view as transforming vectors or changing orthonormal bases
+            \end{itemize}
+      \item 2D Minkowski Space and Lorentz Transformations
+            \begin{itemize}
+                  \item Define new inner product: Minkowski metric, $\mathbb{R}^{n}$ becomes
+                        Minkowski space
+                  \item Minkowski metric preserved by linear maps, subgroup of matrices with
+                        $\det M>0\textrm{ and }M_{00}>0$ form the Lorentz group
+                  \item General form of matrices in terms of hyperbolic trig, matrix map corresponds
+                        to Lorentz transformation, speed of light being maximum possible speed
+            \end{itemize}
+\end{itemize}
+
+\end{document}
