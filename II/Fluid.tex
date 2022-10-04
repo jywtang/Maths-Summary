@@ -1,0 +1,170 @@
+\input{../../header}
+
+\begin{document}
+\section*{Fluid \hfill II}
+
+\section{IB Recap}
+\begin{itemize}
+    \item Continuum Hypothesis, Eulerian/Lagrangian derivative
+    \item Mass conservation, Momentum conservation
+    \item KBC, DBC
+\end{itemize}
+
+\section{Newtonian Viscous Flow}
+\begin{itemize}
+    \item Viscosity definition
+    \item Rate of strain and vorticity: symmetric and antisymmetric parts of $\pdv{u_i}{x_j}$, write $\Omega_{ij} = -\varepsilon_{ijk}\Omega_k$, vorticity as twice angular velocity
+    \item Volume forces and surface force (traction), tensor relation between traction and stress tensor: $\tau_i = \sigma_{ij} n_j$ by force balance
+    \item Symmetry of $\sigma$ by moment balance
+    \item Constitutive equation for Newtonian fluid: linear, instantaneous and isotropic: \[\sigma_{ij} = -p\delta_{ij} + 2\mu e_{ij}\]
+    \item Cauchy momentum equation: \[\rho \left(\pdv{u_i}{t} + u_j \pdv{u_i}{x_j}\right) = F_i + \pdv{\sigma_{ij}}{x_j} \]
+    \item For Newtonian fluids, this gives N-S equations
+          \[\rho \left( \pdv{\vec{u}}{t}  + (\vec{u} \cdot \nabla)\vec{u}  \right) = -\grad{p} + \mu \nabla^2 \vec{u} + \vec{F} \]
+          \[\rho \left( \pdv{u_i}{t}  + u_j \pdv{u_i}{x_j} \right) = -\pdv{p}{x_i} + \mu \pdv{u_i}{x_j,x_j} + F_i \]
+    \item Boundary conditions: no slip ($\vec{u}$ continuous), stress continuous ($\sigma_{ij} n_j$)
+    \item Energy equation: for fixed volume $V$
+          \begin{multline*}
+            \frac{d}{dt} \int_V \frac12 \rho \abs{u}^2 dV = - \oint_S \frac12 \rho u^2 (u_j n_j) dS + \oint_S u_i \sigma_{ij} n_j dS  \\
+             + \int_V F_i u_i dV - \int_V \pdv{u_i}{x_j}\sigma_{ij} dV  
+          \end{multline*} 
+          Change in KE = energy flux + work done due to surface and volume force + stress dissipation
+    \item Non-dimensionalising: Reynolds number (Re $= \frac{\rho UL}{\mu}$) and Strouhal number (St $= \frac{L}{UT}$)
+\end{itemize}
+\section{Unidirectional Flows}
+Velocity only has one component, $\odv{p}{x}$ constant
+\begin{itemize}
+    \item Plane Couette Flow (shear flow with $\odv{p}{x} = 0$)
+    \item Plane Poiseuille Flow ($\odv{p}{x}$) consider flow rate, traction
+    \item Stokes problems: Flow due to impulsively starting plane and oscillating plane
+    \item Velocity diffuses (diffusive scaling $y \sim \sqrt{\nu t}$), similarity solution
+    \item Viscous penetration length for oscillating case
+    \item Flow between cylinders: solve using polars
+\end{itemize}
+
+\section{Stokes Flows}
+\begin{itemize}
+    \item Re $= 0$: Stokes equations \[\mu \nabla^2 \vec{u} =  \grad{p}- \vec{F}, \quad  \nabla \cdot \vec{u} = 0\]
+    \item Solve for flow and pressure, then compute stress, traction, torque
+    \item Properties: instantaneous, linear, reversible in time and space
+    \item Stokes drag: $\vec{F}=6\pi\mu a\vec{U}$
+
+\end{itemize}
+
+\subsection*{Theoretical Results}
+\begin{itemize}
+    \item 'Useful Lemma': for Stokes flow $\vec{u}^S$ and admissable flow $\vec{u}$ (incompressible) in the same volume \[\int_V2\mu e_{ij}^S e_{ij} dV = \int_S\sigma_{ij}^S u_i n_j dS\]
+    \item Minimum dissipation theorem: all incompressible flows with the same Dirichlet BCs, Stokes flow has minimum dissipation
+    \item Stokes flow is unique
+    \item Geometric bounding: use minimum dissipation to bound $ D = U_i \int_S \sigma_{ij} n_j dS = -\vec{F}\cdot \vec{U}$
+    \item Reciprocal theorem for two Stokes flow in the same volume $V$ with different BCs on $S$
+          \[\int_S u_i^2 \sigma_{ij}^1 n_j  dS = \int_S u_i^1\sigma_{ij}^2 n_j  dS = \int_V 2\mu e_{ij}^1 e_{ij}^2 dV\]
+    \item By linearity, \[\begin{pmatrix}
+                  \vec{F} \\ \vec{G} \end{pmatrix} =
+              \begin{pmatrix}
+                  \vec{A} & \vec{B} \\
+                  \vec{C} & \vec{D}
+              \end{pmatrix}
+              \begin{pmatrix}
+                  \vec{U} \\ \vec{\Omega}
+              \end{pmatrix}\] and the general resistance matrix must be symmetric by reciprocal theorem
+    \item Use symmetry/isometry of resistance tensors
+\end{itemize}
+
+\subsection*{Flow in a corner (2D)}
+\begin{itemize}
+    \item Use stream function
+          $u_r = \frac{1}{r}\pdv{\psi}{\theta}$, $u_\theta = \pdv{\psi}{r}$
+          \[\grad \cdot \vec{u} = \frac{1}{r} \pdv*{(ru_r)}{r} + \frac{1}{r}\pdv*{(u_\theta)}{\theta} = 0\]
+          Vorticity $\vec{\omega} = \curl{\vec{u}} = (0,0,-\nabla^2\psi)$
+
+          Taking curl of Stokes equation (gradient term drops out) gives $-\nabla^2\omega = \nabla^2\nabla^2\psi = 0$
+
+    \item Source flow in a corner: some fixed volume flux $Q = \int ru_r d\theta$ with no slip boundary at constant angle
+
+          Try $\psi = Qf(\theta)$ by scaling grounds (purely radial solution), vorticity equation gives $f'''' +4f'' =0$
+
+          General solution \[f = A\cos2\theta + B\sin 2\theta + C + D\theta\]
+
+          Use symmetry and normalisation (volume flux $Q$) to fix solution
+
+    \item Flow past a corner: driven by disturbances far from corner
+
+          Seek solutions of the form $\psi = r^\lambda f(\theta)$, general solution \[f = A\cos\lambda\theta + B\sin \lambda\theta + C\cos(\lambda-2)\theta + D\sin (\lambda-2)\theta \]
+          Get Moffatt Eddies
+
+          Use no slip BC
+    \item Source flow fails when angle of corner too large: eigenvalues have Re$\lambda > 0$, so disturbances to source flow gives modes of corner flow that are dominant, do not decay far away from corner
+
+\end{itemize}
+
+\section{Thin-layer flow (lubrication theory)}
+\begin{itemize}
+    \item Almost unidirectional flow $\vec{u} = (u,v)$
+    \item Vertical scale $h$, Horizontal scale $L$ over which $h$ changes and $h \ll L$, low reduced Reynolds number
+    \begin{align*}
+        0 &= -\pdv{p}{x} + \mu \pdv[order=2]{u}{y} \\
+        0 &= -\pdv{p}{y}
+    \end{align*}    
+    So $p=p(x)$, and integrate to find $u$ directly, use BC
+    \item Geometry of problem, solve unidirectional flow, find pressure gradient by mass conservation, and find forces
+    \item Thrust-bearing flow, cylinder approaching wall, Hele-Shaw cell, gravitational spreading of a drop
+\end{itemize}
+\section{Vorticity}
+\begin{itemize}
+    \item Take curl of N-S and use vector identity to get \[\pdv{\vec{\omega}}{t} + (\vec{u}\cdot \nabla)\vec{\omega} = (\vec{\omega}\cdot \nabla)\vec{u} + \nu \nabla^2 \vec{\omega}\]
+    Vortex stretching and diffusion
+    \item Balance of advection and diffusion: downward velocity (e.g. by suction) will trap vorticity in a boundary layer
+    \item Burgers vortex (derive again)
+\end{itemize}
+\section{Boundary Layer Flow}
+\begin{itemize}
+    \item Euler limit holds in most of the fluid except boundary layer (scaling $\sim \frac{L}{\sqrt{\text{Re}}}$), regularise discontinuity in velocity/enforce no-slip
+    \item First boundary layer approx: $\pdv[order=2]{}{x} \ll \pdv[order=2]{}{y}$
+    
+    Viscous term and inertial term balance gives scaling for $\delta$; 
+    
+    Outside BL (flow tends to $(U(x,t),v)$), drop viscous term and get 
+    \[\rho \left( \pdv{U}{t} + U \pdv{U}{x}\right) = -\pdv{p}{x}\]
+
+    \item Second BL approx: Variation in pressure along and across the flow: (from $x,y$ momentum equations)
+    \begin{align*}
+        \delta p_x &\sim \rho U^2 \\
+        \delta p_y &\sim \rho U^2 \frac{\delta^2}{L^2}
+    \end{align*} 
+    So variation of $p$ across flow is negligible for thin BL (when Re $\gg 1$)
+    
+    Approximate pressure gradient by
+    \[\pdv{p}{x}_{\text{BL}} \approx \pdv{p}{x}_{\text{outside}} = - \rho \left( \pdv{U}{t} + U \pdv{U}{x}\right)\]
+
+    \item BL equations (flow $(u,v)$, far field $U(x,y)$)    
+    \begin{align*}
+        &\rho \left( \pdv{u}{t} + u \pdv{u}{x} + v \pdv{u}{y}\right) = \rho \left( \pdv{U}{t} + U \pdv{U}{x}\right) + \mu \pdv[order=2]{u}{y} \\
+        &\nabla\cdot\vec{u} = 0 \\
+        &u = 0 \text{ on surface} \\
+        &u \to U(x,t) \text{ as } y/\delta \to \infty
+    \end{align*}
+\end{itemize}
+\subsection*{Examples}
+\begin{itemize}
+    \item BL near a flat plate: use stream function and scaling, get 1D ODE
+    \item 2d momentum jet: balance of inertial and viscous terms, conservation of momentum flux
+    \item acceleration/deceleration: acceleration keeps BL structure
+    \item Wedge: have a generalisation of Stokes limit flow
+    \item BL near a free surface: traction only has pressure, no tangential stress
+    
+    Boundary scaling: need to being velocity gradient to $0$, use geometry to find scaling $\delta \sim \sqrt{\frac{\nu L}{U}}$
+
+    Use scaling to find dissipation dominated by external flow, not in BL (can use this to find drag force by dissipation of irrotational flow)
+    \item Compare drag coefficient of rigid sphere, bubble in Stokes flow vs high Re flow
+\end{itemize} 
+
+\section{Stability of unidirectional inviscid flow}
+\begin{itemize}
+    \item Add perturbation to steady flow, investigate linear stability
+    \item Example: Kelvin-Helmholtz instability: add irrotational flow to two layers of flow
+    \item Kinemtic BC at interface: $\mdv*{y-\eta(x,t)}{t} = 0$, so \[v = \pdv{\eta}{t} + u\pdv{\eta}{x} \]
+    Dynamic boundary: only have pressure continuous
+
+    Linearise Bernoulli for unsteady potential flow 
+\end{itemize}
+\end{document}

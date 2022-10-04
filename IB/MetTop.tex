@@ -1,0 +1,216 @@
+\input{../../header}
+
+\begin{document}
+
+\section*{Metric and Topological Spaces \hfill IB Mich}
+
+\section{Metric Spaces}
+\begin{itemize}
+    \item Metric Space $= (X,d)$, a set $X$, a metric $d$, satisfying the axioms:
+          \begin{enumerate}
+              \item $d(a,b) \geq 0 $, with equality iff $a=b$ (Positive definite)
+              \item $d(a,b) = d(b,a) $ (Symmetric)
+              \item $d(a,c) \leq d(a,b) + d(b,c)$ (Triangle inequality)
+          \end{enumerate}
+    \item Examples: \begin{itemize}
+              \item On $\R^n$: discrete metric (1 if equal, 0 otherwise), Euclidean metric, Manhattan metric, British railway metric
+              \item On $\Z$: $p$-adic metric
+              \item On $C[0,1]$: uniform metric ($\, d(f,g) = \max_{x\in[0,1]} \abs{f(x)-g(x)}\,$)
+              \item Counting (Hamming metric)
+          \end{itemize}
+    \item Metric subspace: subset with same metric
+    \item Convergence and continuity can be defined via metric: \\
+          (see below for alternative definitions of continuity)
+    \item Notions in vector space naturally give metric space:
+          \begin{itemize}
+              \item Norm: (positive definite, triangle inequality, scalable), e.g. $L^1, L^2,$ uniform norm $L^\infty$
+              \item Inner product: (positive definite, symmetric, linear), e.g. dot product, integral etc. Cauchy-Schwarz give triangle inequality
+          \end{itemize}
+\end{itemize}
+
+\subsection*{Open and closeness}
+\begin{itemize}
+    \item Open ball:  $B_r(x) = \{ y \in X: d(x,y) < r\}$
+
+          Closed ball: $\bar{B}_r(x) = \{ y \in X: d(x,y) \leq r\}$
+    \item Open subset:
+          $U \subseteq X$ is open if $\forall x \in U$, $\exists \delta >0$ s.t. $B_\delta(x) \subseteq U$ \\
+          (Every point is interior point)
+
+          Closed subset: $C$ is closed in $X$ if $X\backslash C$ is open \\
+          (Open or close is a property of the \emph{subset}, depends on the parent set as well)
+    \item Open neighbourhood of $x$ in $X$: an open subset in $X$ containing $x$
+    \item Limit point: any point $x$ s.t. there exists sequence $x_n \to x$ \\ (can be approached using a sequence)
+    \item $C \subseteq X$ is closed iff every limit point of $C$ belongs to $C$
+    \item Properties:
+          \begin{itemize}
+              \item $\emptyset$ and $X$ are open subsets of $X$
+              \item Union (finite or infinite, both countable and uncountable) of open sets is an open set
+              \item Finite intersection of open sets is open
+          \end{itemize}
+
+\end{itemize}
+
+\subsection*{Alternate characterisation of continuity}
+
+Using open/close sets, or $\varepsilon-\delta$ definition:\\
+Given metric spaces $(X,d_x)$ and $(Y,d_y)$, $f: X \to Y$, $f$ is continuous
+\begin{itemize}
+    \item $\forall x_n \to x$, $f(x_n) \to f(x)$
+    \item $U\subseteq Y$ open $\implies f^{-1}(U) \subseteq X$ open
+    \item $ C\subseteq Y$ open $\implies f^{-1}(C) \subseteq X$ closed
+    \item $ \forall x\in X, \, \forall \varepsilon >0, \, \exists \, \delta>0$ such that $f(B_\delta(x)) \subseteq B_\varepsilon(f(x))$
+
+\end{itemize}
+Composition of continuous functions is continuous
+
+\begin{itemize}
+    \item A sequence $x_n$ is Cauchy if for all $\varepsilon > 0, \exists N(\varepsilon)$ s.t. \[d(x_m, x_n) < \varepsilon \text{ whenever } n, m \geq N(\varepsilon) \]
+          (same as IA Analysis)
+    \item A metric space is complete if every Cauchy sequences converges \\ (not a topological property)
+
+\end{itemize}
+
+\section{Topological Spaces}
+
+\begin{itemize}
+    \item Topological Space: a set $X$ (the space) and $\tau \subseteq \mathbb{P}(X)$, (the topology) s.t.
+          \begin{itemize}
+              \item $\emptyset, X \in \tau$
+              \item $V_\alpha \in \tau$ for all $\alpha \in A \implies \bigcup_{\alpha \in A} V_\alpha \in \tau $ \quad (finite or ctbly/unctbly infinite)
+              \item $V_1, V_2, \dots V_n \in \tau \implies \bigcap_{i=1}^n V_i \in \tau$ \qquad (must be finite)
+          \end{itemize}
+          ($X$ is the collection of points, and $\tau$ is all subsets we \emph{designate} to be open)
+    \item Induced topology: \\ From a given metric $d$, set $\tau$ to be the open subsets of $X$ under $d$
+    \item Examples:
+          \begin{itemize}
+              \item Coarse/indiscrete Topology: $\tau = \{\emptyset, X\}$
+              \item Discrete Topology: all subsets $\tau =\mathbb{P}(X)$ (from discrete metric)
+              \item Cofinite Topology: $\tau = \{A \subseteq X : X \backslash A \text{ is is finite or } A = \emptyset \}$
+              \item Right Order Topology on $\R$: $\tau = \{(a,\infty) : a \in \R \} \cup \{\R = (-\infty, \infty), \emptyset\}$
+          \end{itemize}
+    \item Continuity, close subsets can be defined only using open sets given by topology
+\end{itemize}
+
+\subsection*{Interior and Closure}
+Given a topological space $(X,\tau)$, and $A \subseteq X$,
+
+\begin{itemize}
+    \item The interior of $A$ is the union of all open sets, i.e. the largest open set contained in $A$: \[\text{Int } (A) = \bigcup \{ U \in \tau : U \subseteq A\}\]
+    \item The closure of $A$ is the intersection of all closed sets, i.e. the smallest closed set containing $A$: \[ \text{Cl } (A) = \bigcap \{ F \text{ closed} : F \supseteq A \}\]
+    \item \[(\text{Cl } (A^c))^c = \text{Int } (A), \quad (\text{Int } (A^c))^c = \text{Cl } (A)\]
+    \item In a metric space $(X,d)$, the closure of $A \subseteq X$ adds in all the limit points of $A$ in $X$
+    \item A subset $A \subseteq X$ is a dense in $F \subseteq X$ if $\text{Cl } (A) = F$
+\end{itemize}
+
+\subsection*{Homeomorphism}
+
+A function $f : X \to Y$ is a homeomorphism ($X \simeq Y$, homeomorphic, regarded as the same) if
+\begin{itemize}
+    \item $f$ is a bijection
+    \item both $f$ and $f^{-1}$ are continuous
+\end{itemize}
+
+(Must require inverse to also be continuous, since continuous function might not continuous inverse)
+
+\begin{itemize}
+    \item Homeomorphism is an equivalence relation
+    \item Topological properties are preserved by homeomorphisms (things defined only using open sets)
+\end{itemize}
+
+\subsection*{Sequences}
+\begin{itemize}
+    \item Open neighbourhood can now be defined using the open sets given by the topology: an open subset $U \subseteq X$ s.t. $x \in U$
+    \item Convergent sequence: $x_n \to x$ if for any open neighbourhood $U$ of $x$, $\exists N$ s.t. $x_n \in U$ for all $n > N$
+    \item A limit point $x \in A \subseteq X$ has sequence $x_n \to x$ where $x_n \in A$ for all $n$ (i.e. for all open neighbourhood $U$ of $x$, $U \cap A \neq \emptyset$)\\ (Alternative defn's exist)
+    \item If $U$ is closed, it contains all its limit points (converse not true for topological space)
+\end{itemize}
+
+In this definition, limit of sequence (if exists) may not be unique, but a special class, Hausdorff space:
+\begin{itemize}
+    \item $X$ is a Hausdorff space if for any $x_1, x_2 \in X$, there exist open neighbourhoods $U_1$ of $x_1$, and $U_2$ of $x_2$, s.t. $U_1 \cap U_2 = \emptyset$\\
+          (Can separate any two points by open neighbourhoods)
+    \item Any sequence in a Hausdorff space has at most one limit
+    \item Is a topological property
+\end{itemize}
+
+\section{New Topological Spaces From Old}
+\subsection*{Subspace topology}
+If $(X,\tau_X)$ is a topology, $Y \subseteq X$, then the subspace topology on $(Y,\tau_Y)$ is given by $\tau_Y = \{ Y \cap U \mid U \in \tau_X \}$ \\ (open sets in Y are given by intersecting $Y$ with open sets in $X$)
+\begin{itemize}
+    \item If $Y \subseteq X$, with inclusion $\iota: Y \to X$, then if $f: Z \to Y$ is continuous iff $\iota \circ f: Z \to X$ is continuous
+\end{itemize}
+(Defining property: Topology on $Y$ is the smallest topology on Y for which the inclusion $\iota Y \to X$ is continuous)
+
+\subsection*{Product topology}
+\begin{itemize}
+    \item Basis: for a topological space $(X,\tau)$, a subset $\mathcal{B} \subset \tau$ is a basis for the topology if every $U \in \tau_X$ is a union of elements in $\mathcal{B}$
+
+    \item If $(X,\tau_X), (Y,\tau_Y)$ are topological spaces, define product topology on $X \times Y$ using basis
+          \[\mathcal{B} = \{U_X \times U_Y \mid U_X \in \tau_X, U_Y \in \tau_y \} \]
+
+          Alternatively, define by:
+          $V_X \times V_Y \subseteq X \times Y $ is open if for all $(x,y) \in V_X \times V_Y$, there exist open neighbourhoods $U_X$ of $x$, $U_Y$ of $y$ s.t. $(x,y) \in U_X \times U_Y \subseteq V_X \times V_Y$
+
+          Projection maps are continuous
+
+\end{itemize}
+(Defining property: $f$ is continuous iff $\pi_i \circ f$ are continuous)
+
+
+\subsection*{Quotient topology}
+Given $\sim$ an equivalence relation on $X$, quotient map $q: X \to X/\sim $ by $q(x) = [x]$,
+define quotient topology by: $U$ is open in $X/\sim $ if $q^{-1}(U)$ is open in $X$
+
+Quotient maps are continuous by construction of $X/\sim$
+
+(Defining property: $f: X\sim \to Y$ is continuous if and only if $f \circ q : X \to Y$ is continuous)
+
+\section{Connectivity}
+
+Topological space $X$ is disconnected if $X = A \cup B$, union of two non-empty disjoint open sets \\ (topological property of the space)
+
+\begin{itemize}
+    \item $X$ is disconnected iff $\exists$ homeomorphism $X \to \{0,1\}$ with discrete topology \\ (alternative characterisation)
+    \item $f: X \to Y$ cts, $X$ connected, then $\im f$ connected.
+    \item Path from $x_0$ to $x_1$: continuous $\gamma: [0,1] \to X$ s.t. $\gamma(0) = x_0$ and $\gamma(1) = x_1$
+    \item Path connected: there is a path between any 2 points
+    \item Path connected $\implies$ connected
+    \item $f: X \to Y$ homeomorphism, then restricting to any subset $A \subset X$, $f|_A: A \to f(A)$ is also homeomorphism \\ Homeomorphic spaces stay homeomorphic after taking away points
+    \item (n-connectedness)
+\end{itemize}
+
+Components: cut up disconnected space into components
+
+\begin{itemize}
+    \item Path components: $x \sim y$ if there exists path from $x$ to $y$, take $X/\sim$ the equivalence classes
+    \item Connected components (regular connectivity): \[C(x) = \bigcup \{ \text{connected subsets of } X \text{ containing } x \} \], also connected, equivalence classes
+          \\ (read notes again)
+          \\ maximal connected subspaces
+\end{itemize}
+
+\section{Compactness}
+Open cover of $X$: a family of open sets $\{U_\alpha: \alpha \in A \}$ such that $\bigcup_{\alpha \in A} U_\alpha = X$\\
+Compactness: every open cover of $X$ has a finite subcover
+
+\begin{itemize}
+    \item Finite subspace is compact, $[0,1]$ is compact (read proof again)
+    \item Closed subset of compact space is compact (as subspace topology)
+    \item If $X$ Hausdorff, $C$ compact $\implies$ closed in $X$
+    \item Boundedness is not a topological property
+    \item Compact metric space is bounded (everything is $R$ away from me, then everything is $2R$ away from each other)
+    \item Heine-Borel: $C \subset \R$ is compact iff $C$ is closed and bounded
+    \item Image of compact set under continuous map is compact
+    \item Maximum value theorem: continuous map on compact domain
+    \item If $X$ and $Y$ are compact, then $X \times Y$ is compact
+    \item Quotients
+    \item Compact metric space is complete
+\end{itemize}
+
+
+Sequential Compactness: \\
+$X$ is sequentially compact if any sequence $(x_n)$ in $X$ has convergent subsequence\\
+Equivalent to compactness for metric spaces
+
+
+\end{document}

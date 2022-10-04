@@ -1,0 +1,91 @@
+\input{../../header}
+
+\begin{document}
+\section*{Markov Chains \hfill IB Mich}
+\subsection*{Definition, basic properties}
+\begin{itemize}
+    \item State space: $I$, all possible states
+    \item Markov Chain: A sequence of r.v.s $(X_n)_n\geq 0$ with the Markov Property:
+          \[\mathbb{P}[X_{n+1}=i_{n+1} \mid X_0=i_0,\dots X_n=i_n] = \mathbb{P}[X_{n+1}=i_{n+1} \mid X_n=i_n]
+          \] $\forall n\geq 0 , \, i_0,\dots i_{n+1} \in I \quad $ (only depend on last step)
+    \item Homogeneous:  $\mathbb{P}[X_{n+1}=j \mid X_n=i] =  \mathbb{P}[X_{1}=j \mid X_0=i]$ (same from $n$ to $n+1$ as $0$ to $1$)
+    \item Markov$(\lambda,P)$ has:
+          \begin{enumerate}
+              \item Initial distribution $\lambda = (\lambda_i)_{i \in I}$
+              \item Transition matrix $P$, where $p_{ij}=P(X_{1}=j \mid X_0=i)$, stochastic matrix
+          \end{enumerate}
+    \item Equivalent characterisation of Markov chains: \[\mathbb{P}[X_0=i_0,\dots,X_n=i_n] = \lambda_{i_0} p_{i_0 i_1} \dots p_{i_{n-1} i_n}\]
+    \item Conditional on $X_m=i$, starting Markov Chain at a later fixed point $(X_{m+n})_{n\geq 0}$ is Markov$(\delta_i,P)$, independent on earlier positions
+    \item Formula for probabilities at $n$-th step:
+          \[\mathbb{P}[X_n=j]=(\lambda P^n)_j\]
+          \[\mathbb{P}_i[X_n=j] = \mathbb{P}[X_n=j|X_0=i]=(P^n)_{ij} \]
+    \item Computing transition probabilities $p^{(n)}_{ij}$: \\Find eigenvalues (diagonalise/JNF), have \[p^{(n)}_{ij}=a_1\lambda_1^n + \dots a_N\lambda_N^n,\] if eigenvalues have multiplicities, coefficients become polynomials in $n$
+
+\end{itemize}
+
+\subsection*{Class structures}
+\begin{itemize}
+    \item Lead to ($P_i[X_n=j \text{ for some n}] >0$), communicates with (equiv rel), communicating classes, irreducible chain (single communicating class)
+    \item Closed subset (only lead to things within), absorbing state ($i$ is absorbing if $\{i\}$ is closed)
+\end{itemize}
+
+\subsection*{Hitting and absorption probabilities}
+\begin{itemize}
+    \item Hitting time (random variable): $H^A:\Omega \to \{0,1,2,\dots\} \cup\{\infty \}$ , with \[H^A(\omega) = \inf\{n\geq 0: X_n(\omega) \in A\}\]
+    \item Hitting probability (scalar): \[h^A_i = \mathbb{P}_i[X_n\in A \text{ for some n}] = \mathbb{P}_i[H^A < \infty]= \mathbb{P}_i[\text{hit A}]\] (called absorption probability if $A$ is closed)
+    \item Mean hitting time: $k^A_i=\mathbb{E}_i[H^A_i]=\mathbb{E}_i[\text{time to hit }A]$
+    \item Solving for $h^A_i$: minimal non-negative solution to \[\begin{cases}
+                  h^A_i=1                        & i\in A      \\
+                  h^A_i=\sum_{j\in I}p_{ij}h^A_j & i \not\in A
+              \end{cases}\]
+    \item Solving for $k^A_i$: minimal non-negative solution to \[\begin{cases}
+                  k^A_i=0                              & i\in A      \\
+                  k^A_i=1+\sum_{j\not\in A}p_{ij}k^A_j & i \not\in A
+              \end{cases}\]
+\end{itemize}
+
+\subsection*{Strong Markov Property}
+\begin{itemize}
+    \item A random variable $T$ is a stopping time if the event $\{T=n\}$ only depends on $X_0,X_1,\dots X_n$ for all $n \in \N$
+    \item First passage time $T_i = \inf\{n\geq 1: X_n=i\}$
+    \item Strong Markov property: if $(X_n)$ is Markov$(\lambda,P)$, and $T$ is a stopping time, then conditional on $T < \infty$ and $X_T=i$, $(X_{T+n})$ is Markov$(\delta_i,P)$ and independent on $X_0,\dots X_T$
+\end{itemize}
+
+\subsection*{Recurrence and Transience}
+\begin{itemize}
+    \item A state $i$ is
+          \begin{itemize}
+              \item Recurrent:
+                    $\mathbb{P}_i[X_n=i \text{ for infinitely many } n] =1$ \\
+                    $\iff \mathbb{P}_i[T_i<\infty]=1$ \\
+                    $\iff \sum_n p_{ii}^{(n)} = \infty$
+              \item Transient:
+                    $\mathbb{P}_i[X_n=i \text{ for infinitely many } n] =0$ \\
+                    $\iff \mathbb{P}_i[T_i<\infty] < 1$ \\
+                    $\iff \sum_n p_{ii}^{(n)} < \infty$
+          \end{itemize}
+    \item Class properties
+    \item Every recurrent class is closed
+    \item Every finite closed class is recurrent
+    \item Irreducible and recurrent: for all $j \in I$, $\mathbb{P}[T_j < \infty]=1$.
+\end{itemize}
+
+\subsection*{Invariant Measures}
+\begin{itemize}
+    \item For finite state space $I$, if for some $i\in I$, $p^{(n)}_{ij} \to \pi_j$ as $n \to \infty$ for all $j \in I$, then $\pi_j$ is an invariant distribution
+    \item $\gamma_i^k = E_k\left[\sum_{n=0}^{T_k-1}1_{X_n=1}\right]$, expected time spent in state $i$ between two visits to $k$
+    \item Irreducible and recurrent: properties of $\gamma^k$ (p.21)
+    \item Positive recurrent: $E_i[T_i] < \infty $
+    \item For irred, recurrent chain, one state positive recurrent iff all states positive recurrent
+\end{itemize}
+   
+\subsection*{Convergence to equilibrium}
+\begin{itemize}
+    \item Aperiodic
+    \item Aperiodic, irred, recurrent: prob of being in state $\to$ invariant distribution
+\end{itemize}
+\subsection*{Time Reversal}
+\begin{itemize}
+    \item Initial distribution invariant, reverse chain; detailed balance
+\end{itemize}
+\end{document}

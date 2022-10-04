@@ -1,0 +1,201 @@
+\input{../../header}
+
+\begin{document}
+\section*{Waves \hfill II}
+
+\section{Sound Waves}
+\begin{itemize}
+    \item Governing equations for inviscid, compressible fluid:
+    
+    Conservation of mass \begin{align*}
+        &\pdv{\rho}{t} + \nabla\cdot(\rho\vec{u}) = 0 \text{, or }\\
+        &\mdv{\rho}{t} = \pdv{\rho}{t} + \vec{u}\cdot\nabla\rho = -\rho (\nabla\cdot\vec{u})
+    \end{align*}
+    KBC: only normal component, cannot impose no-slip
+
+    Momentum conservation: Euler's equation 
+    \[\rho \mdv{\vec{u}}{t} = \rho \left( \pdv{\vec{u}}{t}  + (\vec{u} \cdot \nabla)\vec{u}  \right) = -\grad{p} + \vec{F} \]
+    DBC: e.g. free surface, surface tension 
+
+    Equation of state: assume homentropic ideal gas: entropy of fluid parcel same everywhere and unchanged over timescale of motion
+    \[ p = p_0 \left(\frac{\rho}{\rho_0}\right)^\gamma\]
+
+    Internal energy change $\odif{e} = -p \odif{V}= \frac{p}{\rho^2} \odif{\rho}$ and enthalpy $H=e+\frac{p}{\rho}$
+\end{itemize}
+\subsection*{Linear sound Waves}
+
+\begin{itemize}
+    \item 
+    Perturb from base state ($\vec{u} = 0, \rho = \rho_0, p=p_0$), get linearised equations: (equation of state, mass and momentum)
+    \begin{align*}
+        \tilde{p} &= c_0^2 \tilde{\rho}\\
+        \pdv{\tilde{\rho}}{t} &= - \rho_0 (\nabla\cdot\vec{u}) \\
+        \rho_0 \pdv{\vec{u}}{t} &= -\grad{\tilde{p}}
+    \end{align*}
+    where $c_0^2 = \pdv{p}{\rho}_{\rho_0,S}$ is the sound speed. 
+    
+    Combining gives wave equation \[ \pdv[order=2]{\tilde{\rho}}{t} = c_0^2 \nabla^2 \tilde{\rho} \]
+    
+    \item Condition for small perturbation: Mach number $M = \frac{U}{c_0} \ll 1$
+
+    \item Vorticity independent of time, so can use acoustic velocity potential for irrotational flow: \[\vec{u} = \grad{\phi}\]
+    Then taking time derivatives gives 
+    \begin{align*}
+        \pdv{\phi}{t} &= -\frac{\tilde{p}}{\rho_0} \\
+        \pdv[order=2]{\phi}{t} &= c_0^2 \nabla^2 \phi
+    \end{align*}
+    \item Plane wave solutions to wave equation for any unit vector $\vec{\hat{k}}$ (c.f. D'Alembert): : \[f(\vec{\hat{k}} \cdot \vec{x} -c_0 t)\]
+    \item Harmonic waves satisfy dispersion relation (non-dispersive): \[\omega = \pm c_0 \abs{\vec{k}}\]
+\end{itemize}
+\subsection*{Energetics}
+\begin{itemize}
+    \item Total energy density is KE $+$ internal energy due to pressure
+    \[E = \rho\left[\frac{1}{2}\abs{\vec{u}}^2 + \int^\rho \frac{p(\hat{p},S)}{\hat{\rho}^2} \odif{\hat{\rho}}\right]\]
+    \item Conservation of energy follows from mass and momentum: \[\pdv{E}{t} + \nabla\cdot(\vec{u}E+p\vec{u})=0\]
+    Integral form: change in $E = $ advection of $E$ into volume $+$ rate of working of $p$ on surface
+    \item Linear waves: 
+    \[\pdv*{ \left[ \underbrace{\frac{1}{2}\rho_0\abs{\vec{u}}^2}_{K} + \underbrace{\frac{1}{2}\frac{c_0^2 \tilde{\rho}^2}{\rho_0}}_{W} \right]}{t} + \nabla\cdot(\tilde{p}\vec{u}) = 0\]
+    Rate of change of KE + PE (compression) = energy flux 
+
+    \item Have acoustic density $\vec{I} =  \tilde{p}\vec{u}$, instantaneous equipartition of $K$ and $W$, group velocity = phase velocity
+    \item Taking time average: \[\left\langle \Re(Ae^{i\omega t})\Re(Be^{i\omega t}) \right\rangle = \frac12 \Re(AB^*)\]
+    \item Example: transmission and reflection, radiation condition
+\end{itemize}
+\section{Elastic Wave in solids}
+\begin{itemize}
+    \item Here $u$ is displacement, $v$ velocity, $a$ acceleration
+    \[\rho a_i = F_i + \pdv{\sigma_{ij}}{x_j} \]
+    \item Stress tensor, symmetry, and energy equation
+    \begin{multline*}
+        \frac{d}{dt} \int_V \frac12 \rho \abs{v}^2 dV =  \oint_S v_i \sigma_{ij} n_j dS + \int_V F_i v_i dV \\ - \int_V \sigma_{ij} \frac{1}{2} \left(\pdv{v_i}{x_j} + \pdv{v_j}{x_i}\right) dV  
+      \end{multline*} 
+    \item Decompose deformation gradient, constitutive equation (linear, isotropic and uniform material) 
+    \begin{align*}
+        \sigma_{ij} &= \lambda\delta_{ij}e_{kk} + 2\mu e_{ij} \\
+        e_{ij} &= \frac{1}{2\mu} \left[\sigma_{ij}-\frac{\lambda}{3\lambda+2\mu} \delta_{ij}\sigma_{kk}\right]
+    \end{align*}
+    \item Simple deformation: hydrostatic stress/pressure, simple shear, coaxial extension
+    \item Pressure \[p=-\frac{1}{3}\sigma_{ii} = -\left(\lambda + \frac{2\mu}{3}\right) e_{kk} = -\kappa\theta\]
+    
+    \begin{itemize}
+        \item Dilitation $\theta = e_{kk}$
+        \item Bulk modulus $\kappa = \lambda + \frac{2\mu}{3}$
+        \item Shear modulus $\mu$
+        \item Young's modulus $E = \frac{(3\lambda+2\mu)\mu}{\lambda+\mu}$
+        \item Poisson's ratio $\nu = \frac{\lambda}{2(\lambda+\mu)}$
+    \end{itemize}
+\end{itemize}
+\subsection*{Wave equation for elastic solids}
+\begin{itemize}
+    \item Substitute linear constitutive equation into momentum equation (linearise $a_i = \pdv[order=2]{\vec{u}}{t}$): 
+    \begin{align*}
+        \rho_0 \pdv[order=2]{u_i}{t} &= (\lambda+\mu) \nabla(\nabla\cdot\vec{u}) + \mu \nabla^2 \vec{u} \\
+        &= (\lambda +2\mu) \nabla(\nabla\cdot\vec{u}) -  \mu \curl{ (\curl{\vec{u}}) } 
+    \end{align*}
+    Take curl and div respectively: $\theta =\nabla\cdot\vec{u}$ and $\vec{\omega} =\curl{\vec{u}}$ satisfy
+    \begin{align*}
+        \pdv[order=2]{\vec{\omega}}{t} &= \frac{\mu}{\rho_0} \nabla^2 \vec{\omega}  = c_s^2  \nabla^2 \vec{\omega} \\
+        \pdv[order=2]{\theta}{t} &= \frac{\lambda+2\mu}{\rho_0} \nabla^2 \theta = c_p^2 \nabla^2 \theta 
+    \end{align*}
+    P waves have phase speed $c_p = \left(\frac{\lambda+2\mu}{\rho_0} \right)^{\frac{1}{2}}$
+
+    S waves have phase speed $c_s = \left(\frac{\mu}{\rho_0} \right)^{\frac{1}{2}}$
+
+    Energy (when $F_i=0$): 
+    \[\frac{d}{dt} \int_V \left(\frac12 \rho_0 \abs{\dot{\vec{u}}}^2  + \frac{1}{2} \sigma_{ij} e_{ij} \right) dV =  \oint_S \vec{\dot{u} \cdot \sigma \cdot n }  dS  \]
+    Rate of change of KE + elastic PE = integral of energy flux $\vec{I} =  - \vec{\dot{u} \cdot \sigma}$
+\end{itemize}
+\subsection*{Plane waves}
+Form of plane wave \[\vec{f}(\vec{\hat{k}} \cdot \vec{x} -c_0 t)\]
+\begin{itemize}
+    \item P-waves at speed $c_p$ parallel to $\vec{\hat{k}}$, longitudinal waves 
+    \item S-waves at speed $c_s$ perpendicular to $\vec{\hat{k}}$, transverse waves, have polarisation
+    \item Energy: equipartition of $K$ and $W$, group velocity same as phase velocity
+\end{itemize}
+Harmonic waves
+\begin{itemize}
+    \item Have P, SH (horizontal), SV (same plane as $\vec{\hat{k}}$ and $\vec{e_z}$)
+    \item Reflection transmission: Snell's Law evanescence, total internal reflection 
+    \item SH decoupled, P and SV coupled
+    \item Rayleigh waves: P and SV coupled have self sustained evanescence at a boundary
+\end{itemize}
+\section{Dispersive Wave}
+\begin{itemize}
+    \item BC impose dispersion relation, cut-off frequency, group velocity
+    \item Love waves: waveguide (2 boundaries with TIR) and SH wave can self-sustain
+    \item Superposition of waves of nearly equal frequencies: modulated waves with beating
+    \item Using FT, get superposition of harmonic solutions
+    \item Method of stationary phase: waves disperse, if one travels at some velocity $V$ wrt wave, might have stationary phase, then wave disperse less quickly (Ch.12)
+    \item Example: Linear water waves, dispersion relation in the limit of deep and shallow waves
+    \item In stratified fluid, have internal gravity waves:
+    
+    Density $\rho=\rho_0(z) + \tilde{\rho}$, $p = p_0 + \tilde{p}$, $\vec{u} = (u,v,w)$ have equation 
+    \[\rho_0 \pdv*[order=2]{\left[\nabla^2 w + \frac{1}{\rho_0} \odv{\rho_0}{z} \pdv{w}{z}\right]}{t} = g \odv{\rho_0}{z} \nabla^2_h w\]
+
+    Drop second term on left by Boussinesq approximation: 
+    \[\pdv*[order=2]{\nabla^2 w }{t} - \frac{g}{ \rho_0} \odv{\rho_0}{z} \nabla^2_h w = 0\]
+    Buoyancy frequency $N^2 = - \frac{g}{ \rho_0} \odv{\rho_0}{z}$
+
+    Plane harmonic waves must point in particular directions: dispersion relation
+
+    Internal gravity waves are transverse waves
+
+    \item Wave with moving source, Doppler effect:
+    \[\omega' = \omega - \vec{k\cdot  U} = \Omega_0(\vec{k}) - \vec{k\cdot  U} \]
+    Identify where steady waves $\omega=0$ are: capillary wave, supersonic boom, Kelvin shop waves (duck) 
+\end{itemize}
+\section{Ray Theory}
+\begin{itemize}
+    \item Slowly varying media: varying over large length/time scale compared to wavelength/period
+    \item Seek solution of form \[A(\vec{x},t) e^{i\theta(\vec{x},t)/\varepsilon} \] 
+    Phase $\theta(\vec{x},t)/\varepsilon$ vary rapidly, get local wavevector $\vec{k}(\vec{x},t)$ and frequency $\omega(\vec{x},t)$ that satisfy a local dispersion relation \[\omega = \Omega(\vec{k}(\vec{x},t),\vec{x},t)\] 
+    \item Use identities to get 
+    \begin{align*}
+        \pdv{\vec{k}}{t}+(\vec{c}_g\cdot\nabla)\vec{k} &=-\nabla_{\vec{x}}{\Omega}  \\
+        \pdv{\omega}{t}+(\vec{c}_g\cdot\nabla)\omega &=\pdv{\Omega}{t}    
+    \end{align*}
+    A ray $\vec{x}(t)$ 'moves' at group velocity \[\odv{\vec{x}}{t} = \vec{c}_g(\vec{k}(\vec{x},t),\vec{x},t)\]
+\end{itemize}
+\section{Non-linear waves 1D}
+\begin{itemize}
+    \item Conservation of mass and momentum, homentropic flow
+    \begin{align*}
+        \pdv{\rho}{t} + u \pdv{\rho}{x} + \rho \pdv{u}{x} &= 0 \\
+        \pdv{u}{t} + u \pdv{u}{x} &= - \frac{1}{\rho} \pdv{p}{x} \\
+        \pdv{p}{x} &= c^2 \pdv{\rho}{x} 
+    \end{align*}
+    So we get
+    \begin{align*}
+        \pdv{u}{t} + u \pdv{u}{x} +\frac{c^2}{\rho} \pdv{\rho}{x}   &= 0 \\
+        \left(\pdv{}{t} + (u\pm c) \pdv{}{x} \right) (u\pm Q) &= 0
+    \end{align*}
+    With \[Q = \int_{\rho_0}^\rho \frac{c(\hat{\rho})}{\hat{\rho}} \odif{\hat{\rho}}\]
+
+    Riemann invariants $R_\pm = u \pm Q$, constant on $C_\pm$ characteristics where $\odv{x}{t} = u\pm c$.
+
+    \item For perfect gas:
+    \[c^2 = \frac{\gamma p}{\rho} \]
+    Reference sound speed $c^2 = \frac{\gamma p_0}{\rho_0} $, so 
+    \begin{align*}
+        \frac{c}{c_0} &= \left(\frac{\rho}{\rho_0}\right)\frac{\gamma-1}{2} \\
+        Q &= \frac{2}{\gamma-1}(c-c_0) \\
+    \end{align*}
+    \item Simple waves: one set of $R_\pm$ is zero everywhere, so e.g. $u=Q$ everywhere, can relate $u$ and $c$, get straight line characteristics
+\end{itemize}
+\subsection*{Shocks}
+    \begin{itemize}
+        \item Shock formation when the same type of characteristics cross
+        \item R-H Relations: across a shock, have mass, momentum and energy:
+        \begin{align*}
+            \rho_1U_1 &=\rho_0 U_0 \\ 
+            p_1 + \rho_1U_1^2 &=p_0 + \rho_0U_0^2 \\
+            \frac{1}{2}U_1^2 + \frac{\gamma}{\gamma-1}\frac{p_1}{\rho_1} &= \frac{1}{2}U_0^2 + \frac{\gamma}{\gamma-1}\frac{p_0}{\rho_0}
+        \end{align*}
+        Using internal energy $e = \frac{1}{\gamma-1}\frac{p}{\rho}$
+    \end{itemize}
+    \subsection*{Shallow water equations}
+    \begin{align*}
+        \pdv{h}{t} + u \pdv{h}{x} + h \pdv{u}{x} &= 0  \\
+        \pdv{u}{t} + u \pdv{u}{x} +g \pdv{\rho}{x}   &= 0 
+    \end{align*}
+\end{document}

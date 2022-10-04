@@ -1,0 +1,46 @@
+\input{../../header}
+
+\begin{document}
+\section*{Dynamical Systems \hfill II}
+
+\section{Basic}
+\begin{itemize}
+\item FPs, linear stability for non-hyperbolic FPs, invariant subspaces and manifolds
+\end{itemize}
+\begin{itemize}
+    \item Lyapunov stability, quasi-asymptotic stability, asymptotic stability
+    \item Lyapunov function (implies LS), strict LF (implies AS)
+    \item La Salle invariance principle: forward invariant, compact subset $D$ , with Lyapunov function $V$, then all points tend to an invariant subset of $\{\dot{V} = 0\} \cap D$
+    \item Domain of stability: set of points tending to FP
+    \item Bounding function: $\dot{V}$ bounded below away from 0
+\end{itemize}
+
+\section{Periodic Orbits}
+\begin{itemize}
+    \item Poincare index test (2D): all PO have index 1; all sink/source +1, saddle -1
+    \item Dulac's criterion: $\nabla \cdot {\phi \dot{\vec{x}}} \neq 0$ in a simply connected domain $D$, then no PO enclosed in $D$. 
+    \item Gradient criterion: if there exists $\rho > 0$ s.t. $\rho \dot{\vec{x}} = \grad{\phi}$ for single valued function in a simply connected domain, then no PO
+    \item Doubly connected domain has at most one PO
+    \item Poincare-Bendixson Theorem: if forward orbit of a point remains in a compact set which contains no FPs, then have a PO
+    \item Near Hamilton flows: Energy balance method expect PO to be close to a PO of Hamiltonian flow; where $\delta H$ around one loop of original PO is 0
+    \item Stability of PO: Floquet multipliers: eigenvalues of the matrix for perturbation of flow from a PO (except one copy of 1)
+    \item Floquet exponents
+\end{itemize}
+\section{Bifurcations}
+\begin{itemize}
+    \item Extended central manifold to get dynamics on the manifold
+    \item Classification of bifurcations: saddle-node, pitchfork, transcritical
+    \item Structural stability
+    \item Hopf bifurcation
+    \item For maps: period doubling bifurcation
+\end{itemize}
+\section{Chaos}
+D-chaos on an invariant set $\Lambda$
+\begin{itemize}
+    \item SDIC: some $\delta$, any $\varepsilon$, and nearby $x,y$ grow apart
+    \item TT: any open set in $\lambda$ maps to any other open set with sufficient iteration
+    \item Periodic points dense on $\lambda$
+\end{itemize}
+
+G-chaos: horseshoe on domain $I$
+\end{document}

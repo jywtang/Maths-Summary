@@ -1,0 +1,79 @@
+\input{../../header}
+
+\begin{document}
+\section*{fCM \hfill II}
+
+\section{Complex Variable}
+\begin{itemize}
+\item Integral $F(z) = \int_C f(z,t) \odif{t}$ defines an analytic function when 
+\begin{itemize}
+    \item $f(z,t)$ continuous jointly in $z$ and $t$
+    \item Integral converges uniformly in each compact set of the range of $z$
+    \item $f(z,t)$ analytic in $z$ for each $t$
+\end{itemize}
+\item Analytic continuation, uniqueness, radius of convergence up to closest singularity; might have natural boundary
+\item Cauchy Principal Value ($\mathcal{P}$): limit of definite integral to an undefined integral
+\item Hilbert Transform: 
+\[\mathcal{H}(f)(y) = \frac{1}{\pi} \mathcal{P} \left(\int_{-\infty}^\infty \frac{f(x)}{x-y} \odif{x}\right)\]
+Property: \[\mathcal{H}(e^{i\omega x})(y) = \begin{cases}
+    ie^{i\omega y} &, \omega> 0\\
+    -ie^{i\omega y}&, \omega< 0\\
+\end{cases} \]
+So $\mathcal{H}^2 = -\text{Id}$.
+\item Kramers Kronig Relations: for analytic $f(z) = u(x,y) + iv(x,y)$, (decaying quick enough as $z \to \infty$) \begin{align*}
+    \mathcal{H}(u(x,0))&=-v(x,0) \\
+    \mathcal{H}(v(x,0))&=u(x,0) \\
+\end{align*}
+\item Multivalued functions: branch point/cuts, defining $\arcsin$, $\ln$.
+\item Elliptic function: doubly periodic meromorphic function, e.g. Weierstrass $\wp$ function
+
+Finitely many zeroes and poles in a cell; if no poles, then is constant
+\end{itemize}
+\section{Special Functions}
+\begin{itemize}
+    \item Gamma: 
+    \begin{align*}
+        \Gamma(z) &= \int_0^\infty t^{z-1}e^{-t} \odif{t} &,\text{ for $\Re(z) > 0$ (Integral)} \\
+        &= \lim_{n\to\infty} \frac{n! n^z}{z(z+1)\dots(z+n)} &,\text{ for $z\in \C \setminus \{0,-1,-2,\dots\}$ (Euler product)} \\
+        &= \frac{1}{z}\prod_{n=1}^\infty \frac{(1+\frac{1}{n})^z}{1+\frac{z}{n}} &,\text{ for $z\in \C \setminus \{0,-1,-2,\dots\}$ (Gauss product)} \\
+        &= \frac{1}{2i\sin\pi z} \int_{-\infty}^{(0^+)} t^{z-1}e^{t} \odif{t}  &,\text{ for $z\in \C \setminus \{0,-1,-2,\dots\}$ (Hankel representation)}  
+    \end{align*}
+    Weierstrass product (with $\gamma = \lim_{n\to\infty} \left(1+\frac{1}{2}\dots+\frac{1}{n}-\log n\right)$ )
+    \[\frac{1}{\Gamma(z)} = ze^{\gamma z} \prod_{k=1}^\infty \left({1+\frac{z}{k}}\right) e^{-z/k}\]
+    Reflection formula: 
+    \[\Gamma(z)\Gamma(1-z) = \pi \text{cosec}(\pi z) \text{ for $z\not\in \Z$ } \]
+    Generalised Factorial $\Gamma(n+1) = n!$: unique extension (with some extra properties)
+    \item Beta \begin{align*}
+        B(p,q) &= \int_0^1 t^{p-1}(1-t)^{q-1} \odif{t} \text{ for $\Re(p), \Re(q) > 0$} \\
+        &= \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)} \\
+        &= \frac{-1}{4} e^{\pi i (p+q)} \text{cosec}(\pi p)\text{cosec}(\pi q) \int_{\text{Pochhammer}} t^{p-1}(1-t)^{q-1} \odif{t}
+    \end{align*}
+    \item Zeta 
+    \begin{align*}
+        \zeta(z) &= \sum_{n=1}^\infty n^{-z},  \text{ for $\Re(z)> 1$} \\
+        &= \frac{\Gamma(1-z)}{2\pi i} \int_{-\infty}^{(0^+)} \frac{t^{z-1}}{e^{-t}-1} \odif{t} \\
+        &= 2^z \pi^{z-1} \sin\left(\frac{\pi z}{2}\Gamma(1-z)\zeta(1-z) \right) 
+        &= \prod_{p}\frac{1}{1-p^{-z}}, \text{ for $\Re(z)> 1$} 
+    \end{align*}
+    Trivial zeros $\zeta(n)=0$ at $n=-2,-4,-6,\dots$
+\end{itemize}
+
+\section{Solution of DEs by transform methods}
+\begin{itemize}
+    \item Integral transform $\int_\gamma K(z,t)f(t) \odif{t}$ with some kernel $K$, e.g. Laplace, Euler Mellin
+    \item Choose function, then choose contour such that boundary terms vanish
+    \item Laplace transform, Fourier Transform
+    \item Note causality, stability (tend to zero for large $t$)
+    \item Nyquist stability criterion (?)
+\end{itemize}
+\section{2nd order linear ODE in complex plane}
+\begin{itemize}
+    \item Classify ordinary points, regular singular points, irregular singular points
+    \item Power series solution, indicial equation
+    \item Fuchsian equation: at most 3 RSPs, transform
+    \item Papperitz equation, transform rule (p.54), hypergeometric equation
+    \item Hypergeometric function: 
+    \[F(A,B;C;z) = \sum_{n=0}^\infty \frac{(A)_n (B)_n}{(C)_n n!}z^n\]
+    where $(X)_n = (X)(X+1)(X+2)\dots (X+n-1)$
+\end{itemize}
+\end{document}

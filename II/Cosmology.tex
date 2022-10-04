@@ -1,0 +1,126 @@
+\input{../../header}
+
+\begin{document}
+\section*{Cosmology \hfill II}
+
+\section{Expanding Universe}
+\begin{itemize}
+\item FRW Metric:
+\begin{align*}
+    \odif{s}^2 &= -c^2 \odif{t}^2 + a^2(t) \left[\frac{1}{1-kr^2/R^2}\odif{r}^2 + r^2 \odif{\Omega}^2\right] \\
+    &= -c^2 \odif{t}^2 + a^2(t) R^2 \left[\odif{\chi}^2 + S_k(\chi)^2 \odif{\Omega}^2\right]
+\end{align*}
+where \[S_k(\chi) = \begin{cases}
+    \sin\chi & k = +1\\
+    \chi & k = 0\\
+    \sinh\chi & k = -1\\
+\end{cases}\]
+\item Physical coordinates, co-moving coordinate, peculiar velocity, Hubble's Law \[\mathbf{v}_{\text{phys}} = H_0 \mathbf{x}_{\text{phys}}\]
+\item Redshift parameter $1+z=\frac{1}{a(t)}$
+\item Particle horizon (how far we can see/be influenced up to Big Bang), cosmological event horizon (how far we can influence up for $t\to\infty$ or $t_\text{BC}$)
+\item Conformal time \[\tau = \int^t \frac{\odif{t'}}{a(t')}\]
+\item Luminosity distance: wavelength redshifted, energy density scaled down by redshift: \[l = \frac{L}{4\pi R^2 S_k(\chi)^2 (1+z)^2}\]
+\item Deceleration parameter \[q(t) = -\frac{\ddot{a}a}{\dot{a}^2}\]
+\item Equation of states
+\begin{itemize}
+    \item Matter $P=0$
+    \item Radiation $P=\frac{1}{3}\rho$
+    \item Cosmological constant $P=-\rho$
+\end{itemize}
+\item Continuity equation \[\dot{\rho}+3H(\rho+P)=0\]
+\item Friedmann equation \[H^2 = \left(\frac{\dot{a}}{a}\right)^2 = \frac{8\pi G}{3c^2}\rho - \frac{kc^2}{R^2a^2}\]
+\item Raychaudhuri equation \[\frac{\ddot{a}}{a} = -\frac{4\pi G}{3c^2} (\rho + 3P)\]
+\item Critical density
+\end{itemize}
+\subsection*{Cosmological solutions}
+\begin{itemize}
+    \item Single component solutions
+    \begin{itemize}
+        \item Einstein de-Sitter
+        \item Radiation dominated
+        \item Milne Universe
+        \item de Sitter space: $\Lambda > 0$
+        \item anti-de Sitter space: $\Lambda < 0$
+        \item (Cosmological constant + matter)
+    \end{itemize}
+    \item Critical density: (when $\dot{H}^2 =\frac{8\pi G}{3c^2}\rho_\text{crit}$ )
+    \item Singularity theorem
+    \item Virial theorem: system of particles under gravitational potential, time-average PE and KE satisfy
+    \[\overline{V} = -\frac12 \overline{T}\]
+    \item Inflation: flatness problem, horizon problem, accelerating phase: , inflation field, slow roll
+\end{itemize}
+\section{Hot Universe}
+\begin{itemize}
+    \item Statistical Physics (ensembles, Boson/Fermions)
+    \item Last scattering of photon forms CMB, redshift from $T_\text{last}$ and $\lambda_\text{last}$, temperature scale as $1/a$
+\end{itemize} 
+Recombination
+\begin{itemize}
+    \item Saha Equation
+    \[\frac{n_H}{n_e^2} = \left(\frac{2\pi\hbar}{m_ek_BT}\right)^{3/2}e^{\beta E_\text{bind}}\]
+    Ionisation ratio $X_3 = \frac{n_e}{n_B}$ 
+    \[\frac{1-X_e}{X_e^2} = \eta \frac{2\zeta(3)}{\pi^2} \left(\frac{2\pi k_BT}{m_e c^2}\right)^{3/2}e^{\beta E_\text{bind}}\]
+    Interaction rate $\Gamma$
+    Recombination occurs when $\Gamma\approx H$
+\end{itemize}
+
+\begin{itemize}
+    \item Effective number of relativistic series \[g_\star = \sum_\text{boson} g_i + \frac{7}{8}\sum_\text{Fermion} g_i \]
+    \item Energy density from relaivistic species 
+    \[\rho = g_\star \frac{\pi^2}{30\hbar^3 c^3} (k_BT)^4\]
+\end{itemize}
+\section{Structure Formation}
+\begin{itemize}
+\item Fluid equations
+\begin{align*}
+    \pdv{n }{t} + \nabla\cdot(n \mathbf{u}) &= 0 \\
+    mn \left( \pdv{\mathbf{u}}{t}  + (\mathbf{u} \cdot \nabla)\mathbf{u}  \right) &= -\grad{P} - mn \grad{\Phi} \\
+    \nabla^2 \Phi &= 4\pi G mn
+\end{align*}
+\item Perturbations from homogeneous solution $n=\bar{n}, P = \bar{P}$ (without gravitational field) give wave equation with sound speed \[c_s^2 = \frac{1}{m}\pdv{P}{\rho} = \]
+Solutions are non-dispersive
+
+\item With gravity, get 
+\[\left(\pdv[order=2]{}{t}-c_s^2 \nabla^2 -4\pi G m \bar{n}\right)\delta n = 0\]
+Wave are dispersive: 
+\begin{align*}
+    \omega^2 &= c_s^2k^2 -4\pi G m \bar{n} \\
+    &= c_s^2(k^2-k_J^2)
+\end{align*}
+Jeans wavenumber \[k_J^2 = 4\pi Gm \bar{n}/c_s^2\]
+
+For $k\ll k_J$, $\omega$ is imaginary, so have exponential solution (Jeans instability); $k>k_J$, then solution are oscillating
+
+Timescale for pressure to develop: $t_\text{pressure} \sim \frac{R}{c_s}$; timescale for collapse $\tau \sim \sqrt{\frac{1}{4\pi Gm \bar{n}}}$
+
+\item In expanding universe, derivatives change (with $\mathbf{r} = a \mathbf{x}$)
+\begin{align*}
+    \nabla_\mathbf{r} &= \frac{1}{a}\nabla_\mathbf{x}\\
+    \left. \pdv{}{t}\right|_{\mathbf{r}} &= \left. \pdv{}{t}\right|_{\mathbf{x}} -H \mathbf{x} \cdot \nabla_\mathbf{x}
+\end{align*}
+
+The fluid equations in co-moving coords become ($v$ = peculiar velocity)
+\begin{align*}
+    % \left(\left. \pdv{}{t}\right|_{\mathbf{x}} -H \mathbf{x} \cdot \nabla_\mathbf{x}\right) n &= -\frac{1}{a}\nabla_\mathbf{x} \mathbf{u} \\
+    \pdv{n }{t} +3Hn+ \frac{1}{a} \nabla\cdot(n \mathbf{v}) &= 0 \\
+    mna \left( \pdv{}{t} + \frac{\mathbf{v}}{a} \cdot \nabla\right) \mathbf{u} &= -\grad{P} - mn \grad{\Phi} \\
+    \nabla^2 \Phi &= 4\pi G mna^2
+\end{align*}
+\item Under perturbation, density contrast \[\delta = \frac{\delta n}{\bar{n}} = \frac{\delta \rho}{\bar{\rho}} \] 
+% Evolution of $\delta$: \[\dot{\delta} = -\frac{1}{a}\nabla\cdot\mathbf{v}\]
+
+Background flow $\mathbf{u} = H a \mathbf{x}$, spatially uniform pressure gives Poisson equation \[\nabla^2 \Phi = -3\ddot{a}a \]
+This gives acceleration equation \[\frac{\ddot{a}}{a} = -\frac{4\pi G}{3}mn\]
+Perturb from background flow: linearised equations
+\begin{align*}
+    \dot{\delta} &= -\frac{1}{a}\nabla\cdot\mathbf{v} \\
+    m\bar{n}a \left( \dot{\mathbf{v}}  + H\mathbf{v}\right) &= -\grad{\delta P} - m \bar{n} \grad{\delta \Phi} \\
+    \nabla^2 \delta \Phi &= 4\pi G m a^2 \bar{n}\delta 
+\end{align*}
+Combining to give \[\ddot{\delta}(\vec{x},t) + 2\dot{\delta}(\vec{x},t) -c_s^2 \left(\frac{1}{a^2}\nabla^2 + k_J^2\right)\delta (\vec{x},t)= 0\]
+Fourier transform: \[\ddot{\delta}(\vec{k},t) + 2\dot{\delta}(\vec{k},t) -c_s^2 \left(k_J^2 - \frac{k^2}{a^2}\right)\delta (\vec{k},t)= 0\]
+Small wavelength behave as damped oscillator
+Long wavelength $\frac{k}{a} \ll k_J$, drop $k$ term
+For matter dominated universe, get equidimensional equation with constant coeffs, power law solutions $t^{2/3}$ or $t^-1$
+\end{itemize}
+\end{document}
