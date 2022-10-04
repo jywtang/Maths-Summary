@@ -1,0 +1,73 @@
+\input{../../header}
+
+\begin{document}
+\section*{Number Theory \hfill II}
+
+\section{Euclid and Division}
+\begin{itemize}
+\item Division algorithm, Euclid's algorithm, prime numbers, FTA, infinitely many primes
+\end{itemize}
+
+\section{Congruences}
+\begin{itemize}
+\item Quotient ring, Euler totient function, Euler-Fermat Theorem, Chinese Remainder Theorem
+\item Multiplicative function $f$, $\sum_{d \mid n} f(d)$ multiplicative (Mobius inversion)
+\item Polynomial ring, division algorithm, factor theorem, number of roots of polynomial equations
+\item $(\Z / p\Z)^*$ is cyclic. (p.12)
+\item $(\Z / p^n\Z)^*$ is cyclic for odd prime (has prim root) (p.14), $(\Z / 2^n\Z)^* \cong \{\pm 1\} \times $ cyclic 
+\end{itemize}
+
+\section{Quadratic Residues}
+\begin{itemize}
+    \item QR, QNR, precisely half, Legendre symbol, Jacobi symbol
+    \item Euler's Criterion: $\left(\frac{a}{p}\right) \equiv a^\frac{p-1}{2}$ mod $p$, multiplicative
+    \item Law of QR: $\left(\frac{p}{q}\right)\left(\frac{q}{p}\right)   = (-1)^{\frac{p-1}{2}\frac{q-1}{2}}$
+    \item Gauss' Lemma: $\left(\frac{a}{p}\right) = (-1)^\nu$, defined by $\dots$ (p.20) 
+    \item $\left(\frac{-1}{p}\right) = (-1)^\frac{p-1}{2}$ 
+    \item $\left(\frac{2}{p}\right) = (-1)^\frac{p^2-1}{8}$ 
+\end{itemize}
+
+\section{Binary Quadratic Forms}
+\begin{itemize}
+    \item BQFs represent, properly represent, equivalent (related by unimodular substitution), discriminant, positive def, negative def, indefinite criteria
+    \item Transformation rule as matrix (which direction)
+    \item Reduced BQF: either $-a < b \leq a \leq c$ or $0 \leq b\leq a = c$
+    \item Bound on $a,b$ in reduced form: $\abs{b} \leq a \leq \sqrt{\frac{\abs{d}}{3}}$ and $b\equiv d$ mod 2
+    \item Class number $h(d)=$ number of reduced BQF with disc $d$.
+    \item $d \equiv 0$ or $1$ (mod 4) is a fundamental discriminant if $d$ is not of the form $d=k^2d'$ with $k>1$ and $d' \equiv 0$ or $1$ (mod 4)  
+    \item BQF $f$ properly represents $n \iff f$ is equivalent to a form with first coeff $n$.
+    \item $n>0$ is properly represented by some form $f$ of disc $d iff$ the congruence $x^2 \equiv d$ (mod $4n$) is solvable
+    \item If $\left(\frac{a}{p}\right) =1$, then $x^2 \equiv a$ (mod $p^n$) is solvable for all $n \geq 1$.
+\end{itemize}
+
+\section{Distribution of Primes}
+\begin{itemize}
+    \item Prime Distribution
+    \item Mobius inversion
+    \item Legendre's Formula $\pi(x)-\pi(\sqrt{x}) + 1 = N_r(x)$, where $N_r(x) = \# \{1\leq n\leq x \mid n $ coprime to $p_1,p_2,\dots, p_r\}$
+    \item Bertrand's Postulate: there exists prime $p$ with $n \leq p \leq 2n$.
+\end{itemize}
+
+\section{Continued Fractions}
+\begin{itemize}
+\item Algorithm, partial quotients, convergents, eventually periodic, purely periodic $p_n$, $q_n$ and relations $p_n = a_n p_{n-1} + p_{n-2}$ , $\dots$
+\item $p_n q_{n-1}-p_{n-1} q_n = (-1)^{n-1}$
+\item $\abs{\theta -p_n/q_n} < \frac{1}{2q_n q_{n-1}} $
+\item $p_n/q_n \to \theta$
+\item If $\theta$ irrational, $0<q<q_{n+1}$, then $\abs{q\theta - p} \geq \abs{q_n \theta - p_n}$
+\item At least one of two successive convergents satisfy $\abs{\theta -p/q} < 1/2q^2$, conversely if $p,q$ satisfy this then it must be one of the convergents
+\item Quadratic irrational iff eventually periodic
+\item Pell's equation $x^2-Ny^2 = 1$ (and generalised version) guarantee for non-trivial solution
+\end{itemize}
+\section{Primality Test and Factoring}
+\begin{itemize}
+    \item Fermat Pseudoprime to the base $b$: $b^N-1 \equiv 1 $ (mod $N$); Carmichael Number
+    \item Euler pseudoprime: $b^\frac{N-1}{2} \equiv \left(\frac{b}{N}\right) $ (mod $N$); no absolute Euler pseudoprime: (proof, p.65) Solovay-Strassen Primality Test
+    \item Strong Test: $N-1 = 2^s t$, $N$ passes Strong test to base $b$ if $b^t \equiv 1$ (mod $N$) or $b^2r t \equiv -1$ (mod $N$) for some $0\leq r < s$
+    \item Fermat Factorisation: want $N=r^2-s^2$, try $r = \lfloor N \rfloor + 1, \lfloor N \rfloor + 2, \dots$, check if $r^2-N$ is a square, or replace $N$ by $kN$
+    \item Factor base method, continued fraction: choose factor base, find convergents $p_n$ that square to $B$-numbers
+    \item Pollard's $p-1$ algorithm: if $N$ has factor $p$ with $p-1$ product of small primes.
+    
+    Choose $k$ a product of small primes, compute gcd($a^k-1,N$). 
+\end{itemize}
+\end{document}

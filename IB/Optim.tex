@@ -1,0 +1,87 @@
+\input{../../header}
+
+\begin{document}
+
+\section*{Optimisation \hfill IB Easter}
+
+
+Main goal: \\
+\begin{center}
+    minimise $f(x)$ subject to $g(x) = b, x \in X$
+\end{center}
+\begin{itemize}
+    \item Objective function $f: \R^n \to \R$
+    \item Regional constraints: $X \subseteq \R^n$
+    \item Functional constraints: $g: \R^n \to \R^m $, $b \in \R^m$
+\end{itemize}
+
+Solutions $x \in \R^n$:
+\begin{itemize}
+    \item Feasible solution: satisfy constraints
+    \item Optimal: the feasible solution $x*$ such that $f(x*) \leq f(x)$ for all feasible $x$ (if exists)
+\end{itemize}
+
+
+\section{Convex Optimisation}
+
+
+\begin{description}
+    \item[Convex set:] $X \subseteq\R^n$ is convex if for any $x,y \in X$, $t \in [0,1]$
+          \[(1-t)x + ty \in X\]
+    \item[Convex function]: $f : \text{(convex) } X \to \R$ is convex if for all $t \in [0,1]$: \[(1-t)f(x) + tf(y) \geq f((1-t)x + ty)\]
+          (chord/line segment lie above the function)
+\end{description}
+
+Properties:
+\begin{itemize}
+    \item Non-negative definite Hessian matrix $D^2f(x)$ for all $x$ $\implies$ convex $f$ (Taylor's Theorem)
+    \item Supporting hyperplane/graph lies above tangent plane:
+          \[ f(y) \geq f(x) + (y-x)^T \grad f(x) \]
+\end{itemize}
+
+Conditions for optimum/global min:
+\begin{itemize}
+    \item Necessary condition if $x^*$ is also a local min: \\
+          $x^*$ local min $\implies \grad f(x^*) = 0$
+    \item Sufficient condition: \\
+          $\grad f(x^*) = 0$ for convex $f$ $\implies x^*$ is global min \\
+          ($f$ is above the horizontal tangent plane)
+\end{itemize}
+
+
+\begin{description}
+    \item[Strictly convex function:]  (replace definition of convex with strict inequality) \\
+          $f : \text{(convex) } X \to \R$ s.t. for all $t \in [0,1]$: \[(1-t)f(x) + tf(y) > f((1-t)x + ty)\]
+\end{description}
+
+Properties:
+\begin{itemize}
+    \item Positive definite Hessian $D^2f(x)$ for all $x$ $\implies$ strictly convex
+    \item Strictly convex $\implies$ uniqueness of global min (if exists)
+\end{itemize}
+
+
+\begin{description}
+    \item[Strongly convex:]
+          $f$ is $m$-strongly convex if the function $x \to f(x) - \frac{m}{2} \|x\|^2$ is convex.
+\end{description}
+
+For twice differentiable $f$, $f$ is $m$-strongly convex \\
+$\iff D^2f(x) -mI$ is non-negative definite for all $x$\\
+$\iff z^TD^2f(x)z \geq m z^Tz$ for all $z$
+
+\begin{itemize}
+    \item Existence of optimal solution: \\
+          If $f$ strongly complex, continuous, then optimal solution exists \\
+          (for large $\|x\|$, $f(x) \geq f(0)$, problem reduces to optimising over a compact set, then continuity $\implies f$ bounded and attains optimum)
+\end{itemize}
+
+
+
+\subsection*{Computing the optimal solution: algorithms}
+Gradient descent
+Newton's method
+
+
+
+\end{document}

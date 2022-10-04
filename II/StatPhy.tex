@@ -1,0 +1,92 @@
+\input{../../header}
+
+\begin{document}
+\section*{Statistical Physics \hfill II}
+
+\section{Fundamentals}
+\subsection*{Microcanonical ensemble}
+Fixed $E$
+\begin{itemize}
+\item Entropy $S= k_b \log \Omega(E)$, log of number of microstates
+\item Entropy of combined system must increase (by counting)
+\item Temperature \[\frac{1}{T}=\pdv{S}{E}\]
+Pressure \[p = T\pdv{S}{V}\] 
+\end{itemize}
+
+\subsection*{Canonical Ensemble}
+Energy $E$ can vary
+\begin{itemize}
+    \item Partition function:
+\begin{align*}
+    \beta &= \frac{1}{k_BT} \\
+    Z &= \sum_n e^{-\beta E_n} \\
+    S &= k_B \pdv*{(T \log Z)}{T} \\
+    \left\langle E\right\rangle &= -\pdv*{\log Z}{\beta}\\
+    \Delta E^2 &= \pdv*[order=2]{\log Z}{\beta} = k_b T^2 C_V\\
+    F &= \left\langle E\right\rangle -TS =-k_BT\log Z \\
+\end{align*}
+\end{itemize}
+
+\subsection*{Grand canonical ensemble}
+Both $E,N$ can vary
+\begin{itemize}
+    
+\item 
+Chemical potential \begin{align*}
+    \mu &= -T\pdv{S}{N} =  \pdv{F}{N}_{T,V}
+\end{align*}
+\item Grand partition function:
+\begin{align*}
+    \mathcal{Z} &= \sum_n e^{-\beta(E_n-\mu N_n)} \\
+    \left\langle N\right\rangle &= \frac{1}{\beta}\pdv*{\log Z}{\mu}\\
+    \Delta N^2 &= \frac{1}{\beta^2}\pdv*[order=2]{\log \mathcal{Z}}{\mu} = k_b T^2 C_V\\
+    \Phi &= F-\mu N = -p(T,\mu)V
+\end{align*}
+\item First Law \[\odif{E} = T\odif{S} -p\odif{V} + \mu \odif{N}\]
+\item Thermodynamic limit: $E$, $N$ are roughly fixed
+\end{itemize}
+\section{Classical Gas}
+\begin{itemize}
+    \item Classical partition function \[Z_1 = \frac{1}{(2\pi\hbar)^3} \int\odif[order=3]{p} \odif[order=3]{q} e^{-\beta H}\]
+    \item Thermal de Broglie wavelenth \[\lambda = \sqrt{\frac{2\pi \hbar^2}{mk_BT}}\]
+    \item Partition function (for one particle)
+    \[Z_1 = \frac{V}{\lambda^3}\]
+    \item Recover ideal gas law
+    \item Equipartition of energy: $\frac{1}{2}k_BT$ per degree of freedom
+    \item Sackur-Tetrode equation: energy of an ideal gas
+    \item Maxwell distribution:
+    \[\frac{4\pi m^3V}{(2\pi\hbar)^3}\int\odif{v}v^2 e^{-\beta mv^2/2}\]
+    \item Diatomic gas rotation + vibration
+    \item Interacting gas: Mayer $f$ function $1+f(r_{ij}) = e^{-\beta U(r_{ij})}$, 
+    \[\frac{pV}{Nk_B T} = 1-\frac{N}{2V} \int d^3 r f(r)\], van der Waals equation \[k_B T = \left( p + \frac{N^2}{V^2}a\right) \left( \frac{V}{N} - b \right)\]
+\end{itemize}
+\section{Quantum Gases}
+\begin{itemize}
+    \item Density of states
+    \item Relativistic gas
+    \item Blackbody radiation, Stefan Boltzmann Law
+    \item Phonons, Debye model
+    \item Bosons, Bose-Einstein Distribution, BE Condensate 
+    \item Fermions, Fermi-Dirac Distribution
+    \item Pauli paramagnetism
+\end{itemize}
+\section{Classical Thermodynamics}
+\begin{itemize}
+    \item Adiabatic walls: isolate from influences; diathermal walls: not adiabatic
+    \item Zeroth Law: have a notion of temperature
+    \item First Law: energy is a state function
+    \item Second Law: No process is possible whose sole effect is to extract heat from a hot reservoir and convert this entirely to work; no process is possible whose sole effect is transfer of heat from colder to hotter body
+    \item Carnot cycle: adiabatic and isothermal expansion between $T_C$ and $T_H$, reversible
+    \item Efficiency $\eta = \frac{W}{Q_H} =  1-\frac{Q_C}{Q_H}$
+    \item Define temperature s.t. for reversible engine \[\eta = 1-\frac{T_C}{T_H}\]
+    \item \[\oint \frac{dQ}{T} = 0\] (inexact differential), thus define entropy \[S = \int_0^A \frac{dQ}{T} \]
+    \item Third Law
+\end{itemize}
+\section{Phase Transitions}
+\begin{itemize}
+    \item Order of phase transition
+    \item Liquid-gas, phase equilibrium, meta-stable
+    \item Critical point, critical exponents
+    \item Ising model, mean field theory
+\end{itemize}
+\end{document}

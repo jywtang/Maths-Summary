@@ -1,0 +1,232 @@
+\input{../../header}
+
+\begin{document}
+\section*{Methods \hfill IB}
+\section{Self-adjoint ODEs}
+\subsection*{Fourier Series}
+\begin{itemize}
+    \item In the vector space of 'nice enough' periodic functions: $\R \to \R$ with inner product $\langle f,g \rangle = \int_{-L}^{L} f(x) g(x) \dd{x} $, the functions $\cos\left(\frac{n\pi x}{L}\right)$ and $\sin\left(\frac{n\pi x}{L}\right)$ form a countable complete orthonormal basis
+    \item Dirichlet conditions:
+          \begin{enumerate}
+              \item Finitely many bouned discontinuties
+              \item Finitely many extrema in one period
+              \item Absolutely integrable (Bounded?)
+          \end{enumerate}
+    \item Fourier series: \[f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left( a_n \cos\left(\frac{n\pi x}{L} \right) + b_n \sin\left(\frac{n\pi x}{L}\right) \right),\]
+          \begin{align*}
+              \text{ where } a_n & = \frac{1}{L} \int_{-L}^L f(x) \cos\left(\frac{n\pi x}{L}\right) \dd{x}, \\
+              b_n                & = \frac{1}{L} \int_{-L}^L f(x) \sin\left(\frac{n\pi x}{L}\right) \dd{x}
+          \end{align*}
+    \item Half-range series
+    \item Fourier series converge to average of left and right limits at discontinuities
+    \item Order of coefficients related to differentiability of $f$ and discontinuties: \\
+          $f(p)$ discts $\implies$ $a_n,b_n = O(n^{-(p+1)})$
+    \item Can always integrate, but not always differentiate
+\end{itemize}
+
+Can also formulate using complex exponential as basis over periodic function $\R \to \C$ with inner product $\langle f,g \rangle = \int_{-L}^{L} f^*(x) g(x) \dd{x} $:
+\[f(x) = \sum_{n=-\infty}^\infty c_n e^{\frac{i n \pi x}{L}}, \quad \text{ where } c_n = \frac{1}{2L}\int_{-L}^{L} f(x) e^{\frac{-i n \pi x}{L}} \dd{x}\]
+
+\begin{itemize}
+    \item Parseval's Theorem: \[\int_{-L}^L \abs{f}^2 \dd x = 2L \sum_{n=-\infty}^\infty \abs{c_n}^2 = L \left( \frac{a_0^2}{2} + \sum_{n=1}^\infty (a_n^2+b_n^2) \right)\]
+\end{itemize}
+
+\subsection*{Sturm-Liouville Theory}
+Background: (DE, LA)
+\begin{itemize}
+    \item General solution to DE = Particular + Complementary ($n$ linearly indep and spanning), uniqueness by boundary/initial conditions
+    \item On inner product space $V$, a self-adjoint map (i.e. hermitian matrices for finite dim) $M:V \to V$ satisfies $\langle Mu,v\rangle = \langle u, Mv \rangle \, \forall u,v, \in V$
+    \item Self-adjoint maps are orthogonally diagonalisable, can use eigenvector basis to solve $Mx=b$ (get coeffs)
+\end{itemize}
+
+S-L Theory: Consider linear differential operators as linear maps between inner product function spaces:
+
+Aim: Solve 2nd order linear ODE: \[\mathcal{D}y = \alpha y''+\beta y' + \gamma y = f, \quad a \leq x \leq b\] and two boundary conditions
+
+\begin{itemize}
+    \item If $\alpha \neq 0$, any eigenvalue problem ($\mathcal{D}y = \lambda y$) becomes $\mathcal{L}y = -(py')'+qy = \lambda wy$, weight function $w$ with countably many zeroes
+    \item S-L form is self-adjoint iff $ \left[ p\left( \bar{y_1}' y_2 - \bar{y_1}y_2'\right) \right]_a^b = 0$, for all $y_1, y_2$ that satisfy BC, includes many types (e.g. homogeneous Dirichlet, Neumann, mixed)
+\end{itemize}
+
+Good properties of self-adjoint operators:
+\begin{itemize}
+    \item If $\mathcal{L}$ is self-adjoint, get countably infinite, complete basis of orthogonal (orthonormal) simple eigenfunctions with real eigenvalues: $\mathcal{L}y_n = \lambda_n wy_n$, orthogonal in the sense $\langle u,v \rangle_w = \int_a^b w (\bar{u} v) \dd{x}$
+    \item Can use basis to solve for particular integral, if forcing has same BC as solution
+\end{itemize}
+
+\begin{itemize}
+    \item Parseval's Theorem for eigenfunction expansion: if $f(x) = \sum_{n\in\N} a_n y_n$, then $\int_a^b w \left(f(x)\right)^2 \dd{x} = \sum_{n\in\N} (a_n)^2 \norm{y_n}^2_w$ (norm of $y_n$ is integral with weight)
+    \item Bessel's inequality, for incomplete set of eigenfunctions
+    \item Least squares approx: \\
+          Using a finite set of eigenfunctions $S_N(x) = \sum_{n=1}^N b_n y_n$ to approximate $f(x) = \sum_{n\in\N} a_n y_n$: choosing $b_n = a_n$ minimises mean squared error $\varepsilon_N = \int_a^b w \left[ f - S_N\right]^2 \dd{x}$
+\end{itemize}
+
+Can solve forced problems
+Taking product with Green's functions 'inverts' L
+
+
+\section{PDEs, Separation of variables}
+
+\subsection*{Wave equation}
+
+\[\text{1D: } y_{tt} = c^2 y_{xx}\]
+\[\text{2D: } \pdv[2]{\phi}{t} = c^2 \grad^2{\phi}, c=\sqrt{T/\mu}\]
+\begin{itemize}
+
+    \item SOV: if $y = X(x)T(t)$ two sides depends on different variables $\implies$ both sides constant.
+
+    \item If given BC: homogeneous Dirichlet at end points, SOV give eigenvalue problems; solutions must be quantised sine wave, called the normal modes
+          \[y(x,t) = \sum_{n=1}^{\infty} \left(a_n \cos \left(\frac{n \pi ct}{L}\right) + b_n \sin \left(\frac{n \pi ct}{L}\right)\right) \sin \left(\frac{n \pi x}{L} \right) \]
+
+    \item IC: initial position and velocity; determine the coefficient of each separable solution using Fourier
+
+    \item Energy = sum of squares of coeffs, indep of time (use orthogonality)
+
+    \item Reflection at boundary of changing mass density, three waves: incident, transmitted and reflected; $y, y'$ continuous at boundary at all time; phase shift
+
+\end{itemize}
+
+
+Drum problem:
+
+\begin{itemize}
+    \item Wave equation in 2D plane polars, with fixed circular boundary conditions $u(r=1,\theta,t) = 0$\\
+          Suppose solutions separable: $u = R(r) \Theta(\theta) T(t)$
+
+    \item Equation for $R$ gives Bessel's equation \[z^2 \odv[2]{R}{z} + z \odv{R}{z} +(z^2-m^2)R = 0\]
+
+    \item Power series solutions: Bessel/Neumann functions ($J_m(x), Y_m(x)$)
+
+    \item Regularity (boundedness) at r = 0 forces only Bessel function; so solution for space component: \[X_{mn}(r,\theta) = J_m(j_{mn} r) (A_n \cos(m\theta) + B_n \sin(m\theta))\]
+
+    \item General space solution = linear combination of $X_{mn}$:
+    \item Solution for $u$: \begin{align*}
+              u(r,\theta,t) = & \sum_{n=1}^{\infty} J_0(j_{0n} r) \left( A_{0n} \cos (j_{0n} ct) +  C_{0n} \sin (j_{0n} ct)  \right)                                \\
+                              & \sum_{m=1}^{\infty} \sum_{n=1}^{\infty} J_m(j_{mn} r) (A_{mn} \cos(m\theta) + B_{mn} \sin(m\theta)) \left( \cos (j_{mn} ct) \right) \\
+              +               & \sum_{m=1}^{\infty} \sum_{n=1}^{\infty} J_m(j_{mn} r) (C_{mn} \cos(m\theta) + D_{mn} \sin(m\theta)) \left( \sin (j_{mn} ct) \right)
+          \end{align*}
+          IC determine coefficients by orthogonality
+
+\end{itemize}
+
+\subsection*{Diffusion equation}
+\begin{itemize}
+    \item Flux proportional to diffusion gradient, and opposite direction: \[\vec{q} = -k \grad \theta\]
+    \item Changes in total heat = - (net flux outwards)
+    \item Diffusion equation: \[\pdv{\theta}{t} = D \grad^2 \theta\]
+    \item Alternative derivation from random walk
+    \item Error function is a solution without BC; good initial approximation for solution with BCs
+    \item SOV: reformulate problem into homogeneous, get transient solution
+
+
+\end{itemize}
+
+\subsection*{Laplace's equation}
+\begin{itemize}
+    \item Cartesian, Plane polar, Cylindrical polar, Spherical polar
+
+    \item Spherical polar, assume axisymmetric, equation for $\Theta$ give Legendre's equation by substitution $x= \cos\theta \in [-1,1]$:
+          \[-\odiff{x} \left((1-x^2) \odv{\Theta}{x} \right) = \lambda \Theta\]
+
+    \item Series solution, bounded at endpoints $\implies$ solutions are polynomials, with $\lambda_l = l(l+1)$
+
+    \item Legendre polynomials: \\
+          Scaling convention $P_l(1)=1$, orthogonal, \[\int_{-1}^1 P_n(x) \dd{x} = \frac{2}{2n+1}\]
+
+    \item Generating function
+
+\end{itemize}
+
+\section{Generalised function, Inhom ODE}
+
+\begin{itemize}
+    \item Dirac Delta: $\delta(x)$: defined by its property \[\int_{-\infty}^{\infty} \delta(x) f(x) \dd{x} = f(0)\] (sampling property)
+    \item Dirac Delta as a limit of discrete functions
+          \[ \delta_n(x) = \begin{cases}
+                  0   & , \abs{x} > 1/n    \\
+                  n/2 & , \abs{x} \leq 1/n
+              \end{cases} \]
+
+    \item Dirac Delta as a limit of continuous Gaussian functions, mean 0, var $\varepsilon^2$:
+          \[\delta_\varepsilon(x) = \frac{1}{\varepsilon \sqrt{\pi}} e^{-x^2/\varepsilon^2}\]
+
+
+    \item Properties:  $\delta(ax)$,  $\delta(f(x))$, integral of $\delta'(x)$
+    \item Write Dirac Delta as a Fourier series (Dirac comb): if $f(x) = \delta(x)$ on $-L<x<L$, then \[\delta(x) = \frac{1}{2L} \sum_{n=-\infty}^{\infty} c_n e^{in\pi x/L}\]
+    \item Using Dirac Delta to define Green's function: solution to \[\mathcal{L}G(x;\xi) = \delta(x-\xi)\] with homogeneous BC
+\end{itemize}
+
+
+
+\section{Fourier Transform}
+Fourier Transform:
+\[\tilde{f}(k) = \mathcal{F}[f](k) = \int_{-\infty}^\infty f(x)e^{-ikx} \dd x\]
+Inverse Fourier Transform:
+\[f(x) = \mathcal{F}^{-1}[\tilde{f}](x) = \frac{1}{2\pi} \int_{-\infty}^\infty \tilde{f}(k)e^{ikx} \dd k\]
+(Dual property)
+
+Properties:
+\begin{itemize}
+    \item FT of xf(x)
+    \item FT of f': $\tilde{f'}(k) = ik \tilde{f}(k)$
+    \item Convolution: $h(x) = (f*g)(x) = \int_{-\infty}^\infty f(x-u)g(u) \dd{u}$ iff $\tilde{h} =\tilde{f}\tilde{g}$
+          Parseval's Theorem:
+          \[\int_{-\infty}^\infty \abs{f(u)}^2 \dd{u} = \frac{1}{2 \pi} \int_{\infty}^\infty \abs{\tilde{f} (k)}^2 \dd{k}\]
+    \item FT of trig, Heaviside, Delta
+    \item Express Dirac Delta as a FT: $delta \longleftrightarrow 1$
+\end{itemize}
+
+
+\section{PDEs}
+Cauchy problem: include BVP/IVP as auxiliary data (Cauchy data)
+
+Well posed problem:
+\begin{itemize}
+    \item Solution exists
+    \item Solution is unique
+    \item Solution depends continuously on auxiliary data
+\end{itemize}
+
+\subsection*{Method of characteristics}
+1st order,
+Change coordinates along characteristics and along boundary curve
+
+\subsection*{Classification of 2nd order PDEs}
+\begin{itemize}
+    \item General form with coefficient functions, compute value of $b^2-ac$ to classify: \\
+          \begin{itemize}
+              \item >0: hyperbolic, two real characteristics, e.g. wave
+              \item =0: parabolic, one real characteristics, e.g. heat
+              \item >0: elliptic, complex characteristics, e.g. Laplace
+          \end{itemize}
+    \item Equations for characteristics
+    \item Hyperbolic equation: use two sets of characteristics as coordinates, canonical form for the equation
+    \item d'Alembert's solution for wave equation: change variable to $x+ct$ and $x-ct$, get solution \[u = f(x+ct) + g(x-ct)\]
+
+\end{itemize}
+
+
+Solving PDEs with FT
+Heat equation: FT wrt x, solve, convolution of IC and source function/fundamental solution/diffusion kernel \[S_d(x,t)=\frac{1}{\sqrt{4\pi Dt}} e^\frac{-x^2}{4Dt}\]
+
+Duhamel's principle:
+\begin{itemize}
+    \item (Hyperbolic/parabolic, i.e. wave/heat equation)
+    \item Greens function (forcing is product of deltas); \[G=H(t-\tau) S_d(x-\xi,t-\tau)\]
+    \item Built in causal relationship
+\end{itemize}
+
+
+Poisson's equation (forced Laplace's):
+\begin{itemize}
+    \item Higher dim delta function (higher dim intergation)
+    \item Solve with delta forcing: \[\nabla^2 G(\vec{r};\vec{r_0}) = \delta(\vec{r-r_0})\]
+    \item Divergence theorem; get formula for free space Green's function (different in 3D and 2D)
+    \item Dirichlet Greens function: vanish on boundary, contains free space Green's, the remaining part harmonic in domain  
+\end{itemize}
+
+\subsection*{Method of Images}
+Do something outside of domain to eliminate boundary condition (e.g. another heat/cold source) to satisfy Dirichlet/Neumann(homogeneous) boundary conditions to construct Green's function 
+
+
+\end{document}

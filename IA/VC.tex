@@ -1,0 +1,176 @@
+\input{../../header}
+
+\begin{document}
+\section*{Vector Calculus \hfill IA Lent}
+\section{Differential Geometry of Curves}
+\begin{itemize}
+      \item Parametrisation of a curve, under some coordinate system (e.g. Cartesian):
+            a function \( \vec{x}:[a,b] \to \mathbb{R}^3\) with
+            \[\vec{x}(t) = \begin{pmatrix} x(t) \\  y(t) \\ z(t) \end{pmatrix} \]
+      \item In Cartesians: Curve differentiable $=$ components differentiable
+      \item Curve is regular: $|\mathbf{x'}(t)| \neq 0$
+      \item Arc length of curve:
+            \begin{enumerate}
+                  \item Partition the interval \([a,b]\)
+                  \item Calculate sum of straight line lengths at partition points
+                  \item Take limit as maximum $\Delta t$ approaches zero
+            \end{enumerate}
+      \item Piecewise smooth curve: break down into integral of each piece
+      \item Line element:
+            \begin{align*}
+                  \dd s & = \abs{\vec{x}'(t)} \, \dd t                                                                              \\
+                        & = \sqrt{ \left( \odv{x}{t} \right)^2 +\left( \odv{y}{t} \right)^2 + \left( \odv{z}{t} \right)^2} \, \dd t
+            \end{align*}
+
+      \item Tangent, normal, binormal, curvature, torsion
+\end{itemize}
+
+
+
+\section{Integration}
+\begin{itemize}
+      \item Line integral: parametrise curve $C$ by $[a,b] \ni t \to \vec{x}(t)$
+            \begin{itemize}
+
+                  \item
+                        Scalar field $f(\vec{x})$ \\
+                        Scalar arc-length element: $\dd s = \abs{\vec{x}'(t)} \, \dd t $:
+
+                        \[
+                              \int_C f(\vec{x}) \, \dd s = \int_{a}^{b} f(\vec{x}(t)) \abs{\vec{x}'(t)} \, \dd t
+                        \]
+
+                  \item
+                        Vector field $\vec{F}(\vec{x})$ \\
+                        Vector line element: $\dd \vec{x} = \vec{x}'(t) \, \dd t$:
+
+                        \[
+                              \int_C \vec{F}(\vec{x}) \cdot \dd \vec{x} = \int_{a}^{b} \vec{F}(\vec{x}(t)) \cdot \vec{x}'(t) \, \dd t
+                        \]
+
+                  \item If the curve $C$ is a closed loop: closed integral/ circulation about $C$
+                        \[\oint_C \vec{F}\cdot \dd \vec{x} \]
+            \end{itemize}
+
+
+      \item Area integral: given a region $D$ \\
+            Scalar field $f(\vec{x})$ \\
+            Scalar area element (if $D$ is divided into rectangular elements) \\
+            $\dd A = \dd x \, \dd y$
+
+            \begin{align*}
+                  \iint_D f(\vec{x}) \, \dd A & = \int_y \int_{X_y} f(x,y) \, \dd x \, \dd y \\
+                                              & = \int_x \int_{Y_x} f(x,y) \, \dd y \, \dd x
+            \end{align*}
+            where $X_y = \{x: (x,y) \in D\}$ (visualise horizontal strips), \\
+            and $Y_x = \{y: (x,y) \in D\}$ (vertical strips)
+      \item Jacobian: If $x= x(u,v)$ and $y=y(u,v)$ are smooth bijection from region $D'$ in $(u,v)$ plane to region $D$ in $(x,y)$ plane, then
+            \[\iint_D f(x,y)  \, \dd x \, \dd y = \iint_{D'} f(x(u,v),y(u,v)) \, \abs{\pdv{(x,y)}{(u,v)}} \, \dd u \, \dd v\]
+
+            \[\text{i.e. } \dd x \, \dd y = \abs{J} \, \dd u \, \dd v\]
+            \[\textrm{where } J = \pdv{(x,y)}{(u,v)} =
+                  \det \begin{pmatrix}
+                        \pdv{x}{u} & \pdv{x}{v} \\
+                        \pdv{y}{u} & \pdv{y}{v}
+                  \end{pmatrix}
+                  = \det\left( \pdv{\vec{x}}{u} \bigg| \pdv{\vec{x}}{v} \right)\]
+
+            ($|J|$ is the "scale factor" for area)
+
+      \item Volume integral
+            \[\iiint_V f(\vec{x}) dV
+            \]
+            Analogue for Jacobian: \[J = \pdv{(x,y,z)}{(u,v,w)} = \det\left( \pdv{\vec{x}}{u} \bigg| \pdv{\vec{x}}{v} \bigg| \pdv{\vec{x}}{w} \right)\]
+            Examples: \\
+            Cylindrical polars: \[ \dd V =  \dd x \, \dd y \, \dd z = \rho \, \dd \rho \, \dd \theta \, \dd z \]
+            Spherical polars: \[ \dd V = \dd x \, \dd y \, \dd x = r^2 \sin \theta \, \dd r \, \dd \theta \, \dd \phi \]
+      \item Surface integral: \\
+            Given surface defined by $S = \{ \vec{x}: f(\vec{x}) = 0 \}$: $\nabla  f$ is normal to the surface \\
+            Given parametrised surface $S = \{ \vec{x}: \vec{x}(u,v) : (u,v) \in D\}$ for some region $D$ in $(u,v)$ plane \\
+            Normal vector (of unit length) \[\vec{n} = \frac{\pdv{\vec{x}}{u} \times \pdv{\vec{x}}{v}} {\abs{\pdv{\vec{x}}{u} \times \pdv{\vec{x}}{v}}} \]
+
+            Scalar and vector area element:
+            \[\dd S = \abs{\pdv{\vec{x}}{u} \times \pdv{\vec{x}}{v}} \, \dd u \, \dd v \]
+            \[\dd \vec{S} = \pdv{\vec{x}}{u} \times \pdv{\vec{x}}{v} \, \dd u \, \dd v = \vec{n} \, \dd S
+            \]
+\end{itemize}
+
+\section{Div, Grad, Curl and Laplacian: In Cartesians}
+\begin{itemize}
+      \item Gradient (of scalar field): $\nabla  f$
+            \[ [\nabla  f]_i = \pdv{f}{x_i}\]
+      \item Gradient of vector field
+      \item Directional derivative: $ D_{\vec{v}} f = \vec{v} \cdot \nabla  f$
+            \[ \vec{v} \cdot \nabla  f = v_i \pdv{f}{x_i}\]
+      \item Divergence: $ \nabla \cdot \vec{F}$
+            \[ \nabla \cdot \vec{F} = \pdv{F_i}{x_i}\]
+      \item Curl:  $ \nabla \times \vec{F}$
+            \[ [\nabla \times \vec{F}]_i = \epsilon_{ijk} \pdv{x_j} F_k\]
+      \item Laplacian (scalar): (div grad) $\nabla ^2 f = \nabla \cdot \nabla f$
+            \[ \nabla ^2 f = \pdv{f}{x_i}{x_i} \]
+      \item Laplacian (vector field): $\nabla ^2 \vec{F} = \nabla (\nabla \cdot \vec{F}) - \nabla \times (\nabla \times \vec{F})$
+            \[ [\nabla ^2 \vec{F}]_i = (\nabla^2 F_i){\vec{e}_i} \]
+      \item div $\circ$ curl $ = \nabla \cdot \nabla \times \vec{F} = 0 $
+      \item curl $\circ$ grad $ = \nabla \times \nabla f = \vec{0} $
+\end{itemize}
+
+\section{Integration Theorems}
+\begin{itemize}
+      \item Green's Theorem: \\
+            If $P$ and $Q$ are continuously differentiable scalar fields on $A \subset R^2$ and $\partial A$ is made of collection of smooth curves, then
+            \[ \oint_{\partial A} P \, \dd{x} + Q \, \dd y = \iint_A \left( \pdv{Q}{x} - \pdv{P}{y} \right) \, \dd x \, \dd y \]
+
+      \item Stokes' Theorem: \\
+            If $\vec{F}(\vec{x})$ is a continuously differentiable vector field, $S$ an orientable surface with $\partial S$ piecewise regular boundary, then
+            \[\int_S ({\vec{\nabla \times F})\cdot \dd \vec{S} = \oint_{\partial S} \vec{F} \cdot \dd \vec{x}}\]
+
+      \item Divergence/Gauss' Theorem: \\ (3D)
+            If $\vec{F}(\vec{x})$ is a continuously differentiable vector field, $V$ a volume with $\partial V$ piecewise regular boundary, then
+            \[\int_V \nabla \cdot\vec{F} \, \dd V = \int_{\partial V} \vec{F} \cdot \dd \vec{S}\]
+
+      \item (2D): (normal points out of the region)
+            \[ \int_D \nabla \cdot\vec{F} \, \dd A = \oint_{\partial D} \vec{F} \cdot \vec{n} \, \dd s
+            \]
+\end{itemize}
+
+\section{Maxwell's Equations}
+\section{Poisson's Equation}
+
+\begin{itemize}
+      \item Laplace's equation (Forcing = 0)
+      \item Dirichlet and Neumann condition, with uniqueness
+\end{itemize}
+
+
+\section{Cartesian Tensors}
+\begin{itemize}
+      \item Definition: A tensor $T$ of rank $n$ has components $T_{\underbrace{ij\dots k}_{n \text{ indices}}}$ transforms from the right handed orthonormal basis ${\vec{e}_i}$ to ${\vec{e}'_i}$ under the law \[T'_{ij\dots k} = R_{ip}R_{jq}\dots R_{kr} T_{pq\dots r}\] (where $R_ij$ are components of a rotation matrix)
+      \item Scalar (rank 0), vector (rank 1), linear map
+      \item Scaling and adding tensors (of same order) give tensors
+      \item Tensor product: $(T \otimes S)_{\underbrace{ij\dots k}_{n \text{ indices}}\underbrace{pq\dots r}_{m \text{ indices}}} = T_{ij\dots k}S_{pq\dots r}$
+      \item Contraction: contracting on indices $i$ and $j$: $S_{\underbrace{p \dots q}_{n-2}} = \delta_{ij} T_{ijp \dots q}$
+      \item Symmetric, antisymmetric (in components in a pair of components); totally symmetric/antisymmetric
+      \item Tensor field of rank $n$: $T_{ij\dots k}(\vec{x}_0)$ gives a tensor at each point in space (say $\R^3$), e.g. scalar field, vector field
+      \item Differentiating tensor fields: \[ \pdiff{x_i'} = R_{ij} \pdiff{x_j}\] (each derivative gives a factor $R$)
+      \item $m$-th partial derivative of rank $n$ tensor is a tensor of rank $m+n$: \[ \left( \pdiff{x_p} \right) \left( \pdiff {x_q} \right) \dots \left( \pdiff {x_r} \right) T_{ij \dots k}(\vec{x}) \]
+      \item Divergence theorem: \[ \int_V \pdv{T_{ij \dots k \dots l}}{x_k} \dd V = \int_{\pdiff{V}} T_{ij \dots k \dots l} n_k \dd S \]
+      \item Rank 2 tensor: decompose (uniquely) into symmetric and antisymmetric parts:
+            \[T_{ij} = \underbrace{\frac{1}{2}(T_{ij} + T_{ji})}_{S_{ij}} + \underbrace{\frac{1}{2}(T_{ij} - T_{ji})}_{A_{ij}} \]
+
+            And the antisymmetric part \[A_{ij}= \varepsilon_{ijk} \omega_k\]
+            where $\omega_i = \frac{1}{2} \varepsilon_{ijk}T_{jk}$. \\
+            Symmetric part: \[ S_{ij} = \underbrace{P_ij}_{\text{traceless}} + \underbrace{\frac{1}{3}\delta_{ij} S_kk}_{\text{isotropic}} \]
+      \item For any symmetric second rank tensor, there exist a choice of right handed Cartesian coords where the matrix is diagonal (real symmetric matrix can be orthogonally diagonalised)
+      \item Isotropic tensor: invariant under any change of bases :
+            \[ T_{ij\dots k}'=R_{ip}R_{jq}\dots R_{kr} T_{pq\dots r} = T_{ij\dots k}\]
+      \item Correspondence between multi-linear maps and tensors: \\
+            If a multi-linear map (well-defined, independent of basis) is given by
+            \begin{align*}
+                  \underbrace{\R^3 \times \R^3 \times \dots \times \R^3}_n & \to \R                        \\
+                  (\vec{a}, \vec{b} , \dots \vec{c})                       & \to T_{ij\dots k} a_i b_j c_k
+            \end{align*}
+            Then $T_{ij\dots k}$ is a rank $n$ tensor.
+      \item Quotient theorem:\\
+            Given array $T_{i\dots jp\dots q}$, if \[ v_{i\dots j} := T_{i\dots jp\dots q} u_{p \dots q}\] is a tensor for \emph{any} tensor $u_{p\dots q}$, then $T_{i\dots jp\dots q}$ are components of a tensor.
+\end{itemize}
+\end{document}

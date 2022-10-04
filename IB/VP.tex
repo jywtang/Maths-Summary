@@ -1,0 +1,217 @@
+\input{../../header}
+
+\begin{document}
+
+\section*{Variational Principles \hfill IB Easter}
+
+\section{Multi-variable function}
+\begin{itemize}
+    \item Stationary point $\implies \grad f = \vec{0}$
+    \item Max, min, saddle: check eigenvalues of Hessian matrix
+\end{itemize}
+
+\section{Convexity, Extremising functions $\R^n \to \R$}
+\begin{itemize}
+    \item Convex set; convex, strictly convex, concave function etc.
+    \item (Chord connecting two points of convex set lies entirely in the set, chord of graph of convex function lies above graph of function)
+    \item Stationary point of convex function is global minimum (may not be unique point)
+          \subsection*{Alternative characterisation of convexity}
+    \item Once differentiable function: \\
+          $f$ is convex
+          \[\iff f(y) \geq f(x) + (y-x) \cdot \grad f (x)\] (graph lies above tangent plane)
+          \[\iff (y-x) \cdot (\grad f(y) - \grad f (x)) \geq 0\] (in case $n = 1$, condition means $f'$ monotonic increasing)
+    \item Twice differentiable: convex iff Hessian matrix non-negative definite \\
+          (no equivalence for strictly convex, $H$ positive definite $\implies$ strict convexity but no reverse implication)
+    \item Extremising function under constraints: \\
+          Extremise $f(\vec{x})$ while fixing $g(\vec{x})=L$:\\
+          By Lagrange multiplier, extremise $h(\vec{x}, \lambda) = f(\vec{x}) -\lambda (L-g(\vec{x}))$
+\end{itemize}
+
+\section{Legendre Transform}
+Given function $f:\R^n \to \R$, the Legendre Transform of $f$ is \[f^*(\vec{p}) = \sup_{\vec{x}} \, (\vec{p}\cdot \vec{x} - f(\vec{x})), \] over the domain $D\subseteq \R^n$ on which the $\sup$ is finite.
+\begin{itemize}
+    \item $f^*$ is always convex
+    \item If $f$ is convex and differentiable, then $f(\vec{x}) - \vec{p}\cdot \vec{x} $ is convex. \\
+          So any stationary point of $\vec{p}\cdot \vec{x} - f(\vec{x})$ is global max (unique if $f$ is strictly convex), which occurs at $\vec{x}(\vec{p})$ that satisfies \[\grad f (\vec{x}) = \vec{p}\]
+          In this case $f^*(p) = \vec{p}\cdot \vec{x}(\vec{p}) - f(\vec{x}(\vec{p}))$
+    \item $f^{**} = f$ if $f$ is convex
+\end{itemize}
+
+\subsection*{Application to Thermodynamics}
+\[\dd U = T \dd S - P \dd V\]
+Legendre transform changes independent variables: \\
+$U(S,V)$ becomes $F(T,V)$, and $H(S,P)$
+\begin{itemize}
+    \item Helmholtz Free Energy:
+          \[F(T,V) = \min_S \, (U(S,V)-TS) = - U^*(S,V)\]
+          Legendre transform of $U$ with respect to $S$, fixing $V$\\
+          The independent variable $T$ is temperature since the min is attained when $T = \left. \pdv{U}{S} \right|_V$\\
+          Get \[\dd F = -S \dd T - P \dd V\]
+    \item Enthalpy:
+          \[H(S,P) = \min_V \, (U(S,V) + PV) = - U^*(-P,S),\] Legendre transform of $U$ with respect to $V$, with $S$ fixed\\
+          The independent variable $P$ is indeed pressure since min attained when $P = -  \left. \pdv{U}{V} \right|_S$ \\
+          \\
+          Get \[\dd H = T \dd S + V \dd P\]
+    \item Gibbs Free Energy: \[G(T,P) = H(S,P) - TS, \] where $S$ satisfies $T = \left. \pdv{H}{S} \right|_P$ , Legendre transform w.r.t. $S$
+
+\end{itemize}
+
+\section{Extremising functional}
+\begin{itemize}
+    \item Finding "stationary" points of functional (max, min, saddle): \[L[y] = \int_\alpha^\beta f(x,y,y') dx\] subject to boundary condition that cause boundary term to vanish
+    \item Taylor expand to first order, integrate by parts:
+          \[L[y+ \varepsilon \eta] - L[y] = \varepsilon \int_\alpha^\beta \eta \left(\pdv{f}{y} - \odv{}{x} \pdv{f}{y'} \right) \, \dd x + O(\varepsilon^2)\]
+    \item Functional derivative/Euler-Lagrange equation: \[\fdv{L[y]}{y} = \pdv{f}{y} - \odv{}{x} \pdv{f}{y'} =0\]
+    \item First integrals if $f$ does not depend explicitly on $y$, or $x$
+\end{itemize}
+
+
+\subsection*{Multiple dependent variables}
+Extremise \[ L[\vec{y}] = \int_\alpha^\beta f(x,y_1,\dots,y_n,y_1',\dots,y_n') \, \dd x,\] with appropriate boundary conditions
+
+\begin{itemize}
+    \item Generalisation: Use Euler-Lagrange on each dependent variable
+    \item Modification for first integrals:
+          \begin{itemize}
+              \item $f$ no explicit dependence on some $y_i$: get first integral $\pdv{f}{y_i'} =$ constant
+              \item $f$ no explicit dependence on $x$: get first integral $f - \sum y_i' \pdv{f}{y_i'} =$ constant
+          \end{itemize}
+\end{itemize}
+
+\subsection*{Multiple independent variables}
+Find function $\vec{\Phi}: D \subseteq \R^m \to \R^n$ fixed at boundary that extremises
+\[F[\vec{\Phi}] = \int \dots \int_D f(x_1, \dots x_m, \vec{\Phi}, \grad\vec{\Phi} ) \, \dd x_1 \dots \dd x_m, \] where $\grad \vec{\Phi} = \left( \pdv{\vec{\Phi}_i}{x_j}\right)_{ij}$
+
+\begin{itemize}
+    \item Taylor expand $f$, write integrand as a divergence + $\eta \cdot (\fdv{F}{\Phi})$
+    \item Integral of divergence vanishes
+    \item Euler-Lagrange give PDEs
+\end{itemize}
+
+\subsection*{Euler-Lagrange for higher derivatives}
+For example: Extremise \[F[x] = \int_\alpha^\beta f(t,\dot{x}, \ddot{x}) \, \dd t, \] with $x, \dot{x}$ fixed at boundary \\
+
+Taylor Expand integrand, integration by parts: get \[ \delta F[x] = \int_\alpha^\beta \delta x \underbrace{\left( \pdv{f}{x} - \odv{}{x} \pdv{f}{\dot{x}} + \odv[2]{}{x}  \pdv{f}{\ddot{x}}  \right)}_{\begin{displaystyle}
+            \fdv{F}{x}
+        \end{displaystyle}} \, \dd t\]
+
+\subsection*{Extremising with constraints}
+Extremise \[F[y] = \int_\alpha^\beta f(x,y,y') \, \dd x\] under functional constraint \[G[y] = \int_\alpha^\beta g(x,y,y') \, \dd x = K \]
+
+\begin{itemize}
+    \item Use Lagrange multiplier: Extremise \[L[y] = \int_\alpha^\beta f(x,y,y') - \lambda g(x,y,y') \, \dd x = F[y]- \lambda G[y] \]
+\end{itemize}
+
+Extremise \[F[\vec{x}] = \int_\alpha^\beta f(t,\vec{x},\vec{x}') \, \dd t\] under function constraint $g(\vec{x}) = 0$ for all $t$
+\begin{itemize}
+    \item Need Lagrange multiplier $\lambda(t)$ that changes with $t$: \[\Phi[\vec{x},\lambda] = \int_\alpha^\beta \left( f(t,\vec{x},\vec{x}') - \lambda(t) g(\vec{x}) \right) \, \dd t\]
+\end{itemize}
+
+
+\section{Example, variational principles}
+\begin{itemize}
+    \item Geodesic (minimise distance): Euclidean plane (straight line), sphere (great circle), general surface
+    \item Minimal surface (minimise surface area): e.g. catenoid of soap film
+    \item Brachistochrone: shortest travel time (cycloid)
+    \item Fermat's Principle: least time $\implies$ Snell's Law
+    \item Minimise potential energy (e.g. catenary)
+    \item Dido problem (isoperimetric problem, maximise area)
+    \item Sturm-Liouville problem
+    \item Lagrangian (Old) principle of least action: Minimises $m \int v \, \dd l$
+    \item Hamilton's principle: action $= \int L \, \dd t$
+\end{itemize}
+
+
+\subsubsection*{Sturm-Liouville Problem}
+Given $\rho(x), w(x) \geq 0$, extremise \[F[y] = \int_\alpha^\beta \rho(x) (y')^2 + \sigma(x) y^2 \dd x,\] subject to \[G[y] = \int_\alpha^\beta w(x)y^2 \dd{x} = 1\] and fixed boundary of $y$
+
+\begin{itemize}
+    \item Use Lagrange multiplier, Euler Lagrange gives \[ - \odv{}{x} (\rho(x) y') + \sigma(x) y = \lambda w(x) y\]
+    \item Extremal are eigenfunctions of Sturm-Liouville operator \[\mathcal{L} = - \odv{}{x} \left( \rho(x) \odv{}{x} \right) + \sigma(x),\] extremal $y$ satisfy \[\mathcal{L}y = 2wy\]
+    \item If also $\sigma(x) > 0$, then $F[y] \geq 0$, so minimum of $F[y]/G[y]$ is smallest eigenvalue of $\mathcal{L}$ (Check notes again for boundary term)
+\end{itemize}
+
+\section{Formulation of Mechanics}
+\subsection*{Lagrangian Mechanics}
+\begin{itemize}
+    \item Lagrangian $L = T-V$ in generalised coordinates
+    \item Hamilton's Principle: Trajectory is stationary point of action (not actually minimiser) with fixed endpoints \[A[\vec{x}] = \int_{t_1}^{t_2} L \, \dd t \]
+    \item Lagrange's Equation \[\pdv{L}{x_i} = \odv*{\left(\pdv{L}{\dot{x}_i}\right)}{t}\]
+    \item Implies Newton's 2nd Law
+    \item If potential energy $V$ is independent of time, get conservation of energy
+\end{itemize}
+
+\subsection*{Noether's Theorem}
+(More details in Townsend's notes p.35)
+
+If $\vec{y} = (y_1,\dots y_n)$ extremises functional $F[\vec{y}] = \int_\alpha^\beta f(x, \vec{y} , \vec{\dot{y}}) \, \dd x,$
+and there is 1-parameter continuous symmetry
+$y_i(x) \mapsto Y_i(s,x)$ such that \[\odv*{f(x, \vec{Y}(s,x) , \vec{\dot{Y}}(s,x))}{s} = 0, \text{ and } Y_i(0,x) = y_i(x)\]
+Get first integral: \[ \left. \sum_{i=1}^n \pdv{f}{y_i'} \pdv{Y_i}{s} \right|_{s=0} = \text{ constant}\]
+
+(Invariance under e.g. translation, rotation give conservation laws)
+
+\subsection*{Hamiltonian Mechanics}
+Hamiltonian $=$ Legendre transform of Lagrangian $L(\vec{q}, \vec{\dot{q}},t)$ with respect to velocity $\vec{\dot{q}}$ (in generalised coordinates):
+\begin{align*}
+    H(\vec{q}, \vec{p}, t) & = \sup_{\vec{\dot{q}}} [\vec{p} \cdot \vec{\dot{q}} - L(\vec{q}, \vec{\dot{q}},t) ]                                                     \\
+                           & = \vec{p} \cdot \vec{\dot{q}}(\vec{p}) - L(\vec{q}, \vec{\dot{q}}(\vec{p}),t), \text{ where } \vec{\dot{q}}(\vec{p}) \text{ satisfies }
+\end{align*}
+\[ \vec{p} = \pdv{L}{\vec{\dot{q}}}, \text{ i.e. } p_i = \pdv{L}{\dot{q}_i} \]
+
+\begin{itemize}
+    \item New independent variable $\vec{p}$ is generalised momentum
+    \item In one particle scenario, Hamiltonian is total energy $(T+V)$
+    \item Hamilton's equations:
+          \begin{align*}
+              \dd H & = \pdv{H}{q_i} \dd q_i + \pdv{H}{p_i} \dd p_i +  \pdv{H}{t} \dd t                                                                       \\
+                    & = \pdv{L}{q_i}  \dd q_i + \left[\dot{q}_i + \left(p_j - \pdv{L}{\dot{q}_j}\right) \pdv{\dot{q}_j}{p_i}\right] \dd p_i - \pdv{L}{t}\dd t \\
+                    & = \left(\dot{p}_i \right) \dd q_i + \left( \dot{q}_i \right) \dd p_i - \pdv{L}{t}\dd t.
+          \end{align*}
+          where $p_j = \pdv{L}{\dot{q}_j}$ by above, and
+          $\pdv{L}{q_i} = \odv*{\pdv{L}{\dot{q}_i}}{t} = \dot{p}_i$ by Lagrange's equation
+
+          Matching terms give
+          \[\pdv{H}{\vec{q}} = - \vec{\dot{p}},  \qquad \pdv{H}{\vec{p}} = \vec{\dot{q}}, \qquad \pdv{H}{t} = - \pdv{L}{t}\]
+          (Be careful of which variables held fixed in partial differentiation)
+    \item Hamilton's equations can also be obtained from E-L equations of a variational principle, extremising \[S[\vec{q}, \vec{p}] = \int \left\{\vec{p} \cdot \vec{q} - H(\vec{q}, \vec{p}, t)\right\} \, \dd t\]
+\end{itemize}
+
+\section{Second variation}
+To extremise $F[y] = \int_\alpha^\beta f(x,y,y') \, \dd x$, with fixed ends.
+\begin{itemize}
+    \item Taylor expand $F[y+ \varepsilon \eta] - F[y]$ to second order, about stationary point $y$:
+          \[F[y+ \varepsilon \eta] - F[y] = \varepsilon^2 \underbrace{ \frac{1}{2} \int_\alpha^\beta \left( \eta^2 \pdv[2]{f}{y} + (\eta')^2 \pdv[2]{f}{y'} + 2\eta \eta' \pdv{f}{ y, y'} \right)\, \dd x}_{\begin{displaystyle}\delta^2 F[y, \eta] \end{displaystyle} } + O(\varepsilon^3)\]
+    \item Using by parts on mixed term:
+          \[\delta^2 F[y , \eta ] =  \frac{1}{2} \int_\alpha^\beta \left\{ \underbrace{\left(  \pdv[2]{f}{y} - \odv*{\left( \pdv{f}{ y, y'}\right)}{x}  \right)}_{Q} \eta^2 + \underbrace{\pdv[2]{f}{y'}}_{P} (\eta')^2 \right\} \, \dd x\]
+    \item If $y$ satisfies E-L, and $\delta^2 F[y , \eta ] \geq 0$ for any $\eta$ that vanishes at endpoints, then $y$ is a local minimiser of $F[y]$
+\end{itemize}
+\subsection*{Conditions for local minimum}
+\begin{itemize}
+    \item Legendre condition: $y$ is a local minimum $\implies P = \pdv[2]{f}{y'} \geq 0$; \\
+          otherwise, can find $\eta$ with small magnitude but large $(\eta')^2$ to give contradiction
+
+          (necessary, not sufficient)
+
+    \item $P>0$ and $Q\geq 0$ sufficient for local minimum
+    \item Rewrite \[Q \eta^2 + P (\eta')^2 = Q \eta^2 + (P\eta \eta')' - \eta (P\eta')' \]
+          In terms of  Sturm-Liouville operator \[ \delta^2 F[y , \eta ] = \frac{1}{2} \int_\alpha^\beta \eta \underbrace{(-(P\eta')' + Q \eta)}_{\mathcal{L}(\eta)} \, \dd x\]
+          If $\mathcal{L}$ has a negative eigenvalue, with eigenfunction $\eta$ that vanishes at endpoints, i.e. \[\mathcal{L}(\eta) = - \omega^2 \eta, \quad \eta(\alpha) = \eta(\beta) = 0,\] then $y$ is not a local minimiser
+\end{itemize}
+
+\subsubsection*{Jacobi condition}
+It is known that $P>0$ is not sufficient for local minimum, but when does it fail?
+\begin{itemize}
+    \item For any differentiable $\phi$, have \[ 0 = \int_\alpha^\beta (\phi \eta^2)' \, \dd x = \int_\alpha^\beta [2 \phi \eta \eta' + \phi' \eta^2] \, \dd x, \]
+    \item Add it to $\delta^2 F[y , \eta]$, complete the square (assuming $P>0$):
+          \[ \delta^2 F[y , \eta ] = \frac{1}{2} \int_\alpha^\beta \left[ P\left( \eta' + \frac{\phi\eta}{P} \right)^2 + \left(Q+\phi' - \frac{\phi^2}{P} \right) \eta^2 \right] \dd x\]
+
+    \item If can choose $\phi$ to make the second term vanish, then $\delta^2 F[y , \eta] >0 $. This sufficient condition is given by a Ricatti equation
+          \[\phi^2 = P(Q+\phi')\]
+    \item Transform the equation, by letting $\phi = -P \frac{u'}{u}$, get Jacobi accessory equation \[ -(Pu')' + Qu = 0 \]
+          Need to find solution $u$ to this Strum-Liouville equation s.t. $u(x) \neq 0$ for $\alpha < x< \beta$, which might not exist for  interval too large
+
+\end{itemize}
+
+
+\end{document}
